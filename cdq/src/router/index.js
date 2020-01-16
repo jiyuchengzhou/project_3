@@ -1,10 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+// 引入exam1主件
+import exam1 from "../components/exam1.vue";
 
 Vue.use(VueRouter)
 
 const routes = [
+  //exam1地址
+  {
+    path:"/exam1",
+    component:exam1
+  },
   {
     path: '/',
     name: 'home',
