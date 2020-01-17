@@ -1,3 +1,4 @@
+//https://www.chongduoqu.com/h5/#/home
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
