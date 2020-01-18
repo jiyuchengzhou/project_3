@@ -1,8 +1,10 @@
-//https://www.chongduoqu.com/h5/#/home
+//https://m.3pet.cn/index.html
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+//引入normalize.css组件
+import 'normalize.css/normalize.css'
 //1:引入mint-ui组件库中所有组件
 import MintUI from "mint-ui"
 console.log(MintUI);
