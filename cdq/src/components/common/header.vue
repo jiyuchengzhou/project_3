@@ -21,19 +21,41 @@
         <!-- 主体区域 -->
         <div>
             <div>
-                <img style="width:100%;height:auto;" src="../img/souye/gonggao.jpg" alt="">
+                <a href=""><img style="width:100%;height:auto;" src="../img/souye/gonggao.jpg" alt=""></a>
             </div>
             <div>
-                <img style="width:100%;height:auto;" src="../img/souye/01.png" alt="">
+                <a href=""><img style="width:100%;height:auto;" src="../img/souye/01.png" alt=""></a>
             </div>
             <!-- 三张图片组合 -->
             <div>
+                  
                 <div style="width:50% ;float:left">
-                <img style="width:100%;height:auto;" src="../img/souye/02.webp" alt="">
+                    <a href="">
+                        <img style="width:100%;height:auto;" src="../img/souye/02.webp" alt="">
+                    </a>
                 </div>
                 <div style="width:50%;float:left">
-                <img style="width:100%;height:auto;" src="../img/souye/03.webp" alt="">
-                <img style="width:100%;height:auto;" src="../img/souye/04.webp" alt="">
+                    <a href="">
+                        <img style="width:100%;height:auto;" src="../img/souye/03.webp" alt="">
+                    </a>
+                    <a href="">
+                        <img style="width:100%;height:auto;" src="../img/souye/04.webp" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href=""><img style="width:100%;height:auto;" src="../img/souye/05.png" alt=""></a>
+                </div>
+                <div>
+                    <a href=""><img style="width:100%;height:auto;" src="../img/souye/06.jpg" alt=""></a>
+                </div>
+                <!-- 横向商品展示区 -->
+                <div style="width:100%;height:auto;display:flex;flex-wrap:nowrap;overflow:auto;">
+                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
                 </div>
 
 
