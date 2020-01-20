@@ -26,41 +26,106 @@
             <div>
                 <a href=""><img style="width:100%;height:auto;" src="../img/souye/01.png" alt=""></a>
             </div>
-            <!-- 三张图片组合 -->
-            <div>
-                  
-                <div style="width:50% ;float:left">
-                    <a href="">
-                        <img style="width:100%;height:auto;" src="../img/souye/02.webp" alt="">
-                    </a>
-                </div>
-                <div style="width:50%;float:left">
-                    <a href="">
-                        <img style="width:100%;height:auto;" src="../img/souye/03.webp" alt="">
-                    </a>
-                    <a href="">
-                        <img style="width:100%;height:auto;" src="../img/souye/04.webp" alt="">
-                    </a>
-                </div>
-                <div>
-                    <a href=""><img style="width:100%;height:auto;" src="../img/souye/05.png" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img style="width:100%;height:auto;" src="../img/souye/06.jpg" alt=""></a>
-                </div>
-                <!-- 横向商品展示区 -->
-                <div style="width:100%;height:auto;display:flex;flex-wrap:nowrap;overflow:auto;">
-                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                    <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                </div>
-
-
+            <!-- 三张图片组合 -->       
+            <div style="width:50% ;float:left">
+                <a href="">
+                    <img style="width:100%;height:auto;" src="../img/souye/02.webp" alt="">
+                </a>
             </div>
-
+            <div style="width:50%;float:left">
+                <a href="">
+                    <img style="width:100%;height:auto;" src="../img/souye/03.webp" alt="">
+                </a>
+                <a href="">
+                    <img style="width:100%;height:auto;" src="../img/souye/04.webp" alt="">
+                </a>
+            </div>
+            <!-- 低价处理区 -->
+            <div>
+                <a href=""><img style="width:100%;height:auto;" src="../img/souye/05.png" alt=""></a>
+            </div>
+            <div>
+                <a href=""><img style="width:100%;height:auto;" src="../img/souye/06.jpg" alt=""></a>
+            </div>
+            <!-- 横向商品展示区 -->
+            <div style="width:100%;height:auto;display:flex;flex-wrap:nowrap;overflow:auto;">
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+            </div>
+            <!-- 固定商品展示区 -->
+            <div style="width:100%;height:100px;background:yellow;"></div>
+            <!-- 爆品团购区 -->
+            <div style="display:flex;flex-wrap:wrap;">
+                <div style="width:100%;">
+                    <img style="width:100%;height:auto;" src="../img/souye/07.png" alt="">
+                </div>
+                <div style="width:100%;">
+                    <img style="width:50%;height:auto;" src="../img/souye/08.webp" alt="">
+                    <img style="width:50%;height:auto;" src="../img/souye/09.webp" alt="">
+                    <img style="width:50%;height:auto;" src="../img/souye/10.webp" alt="">
+                    <img style="width:50%;height:auto;" src="../img/souye/11.webp" alt="">
+                    <img style="width:50%;height:auto;" src="../img/souye/12.webp" alt="">
+                    <img style="width:50%;height:auto;" src="../img/souye/13.webp" alt="">
+                </div>
+            </div>
+            <!-- 犬猫医疗保健品 -->
+            <div style="width:100%">
+                 <img style="width:100%;height:auto;" src="../img/souye/14.png" alt="">
+                 <img style="width:100%;height:auto;" src="../img/souye/15.png" alt="">
+            </div>
+            <div style="width:100%;">
+                <img style="width:50%;height:auto;" src="../img/souye/17.webp" alt="">
+                <img style="width:50%;height:auto;" src="../img/souye/17.webp" alt="">
+                <img style="width:50%;height:auto;" src="../img/souye/18.webp" alt="">
+                <img style="width:50%;height:auto;" src="../img/souye/19.webp" alt="">
+                <img style="width:50%;height:auto;" src="../img/souye/20.webp" alt="">
+                <img style="width:50%;height:auto;" src="../img/souye/21.webp" alt="">
+            </div>
+            <!-- 犬猫美味零食 -->
+            <div style="width:100%">
+                <img style="width:100%;height:auto" src="../img/souye/22.png" alt="">
+            </div>
+            <div style="width:100%;">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/23.webp" alt="">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/24.webp" alt="">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/25.webp" alt="">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/26.webp" alt="">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/27.webp" alt="">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/28.webp" alt="">
+            </div>
+            <!-- 犬猫日常用品 -->
+            <div style="width:100%">
+                <img style="width:100%;height:auto" src="../img/souye/29.png" alt="">
+            </div>
+            <div style="width:100%;">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/30.webp" alt="">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/31.webp" alt="">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/32.webp" alt="">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/33.webp" alt="">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/34.webp" alt="">
+                <img style="width:33.33333333%;height:auto;justify-content:center;" src="../img/souye/35.webp" alt="">
+            </div>
+            <!-- 双拼粮犬猫更爱吃 -->
+            <h2 style="width:100%;font-size: 16px;height: 2rem;line-height: 2rem;font-weight: bold;color: #353535;text-align: center;position: relative;"><span>双拼粮犬猫更爱吃</span></h2>
+            <div style="width:100%;">
+                <img style="width:100%;height:auto" src="../img/souye/36.jpg" alt="">
+            </div>
+            <div style="width:100%;">
+                <img style="width:100%;height:auto" src="../img/souye/37.jpg" alt="">
+            </div>
+            <!-- 横向商品展示区 -->
+            <div style="width:100%;height:auto;display:flex;flex-wrap:nowrap;overflow:auto;">
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+            </div>
         </div>
 
     </div>    
