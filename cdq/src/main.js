@@ -7,11 +7,16 @@ import store from './store'
 import 'normalize.css/normalize.css'
 //1:引入mint-ui组件库中所有组件
 import MintUI from "mint-ui"
-console.log(MintUI);
+//引入axios组件
+import axios from 'axios'
 //2.单独引入mint-ui组件库中样式文件
 import "mint-ui/lib/style.css"
+// 配置访问服务器基础路径
+axios.defaults.baseURL = 'http://127.0.0.1:4000/';
 //3.注册MintUI对象
 Vue.use(MintUI)
+//注册axios对象
+Vue.prototype.axios=axios
 
 Vue.config.productionTip = false
 

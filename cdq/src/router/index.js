@@ -6,10 +6,22 @@ import exam1 from "../components/exam1.vue";
 import header from "@/components/common/header.vue";
 // 引入footer组件
 import footer from "@/components/common/footerIcon.vue";
+//引入login组件
+import login from "@/components/common/login.vue"
+// 引入注册组件
+import register from "@/components/common/register.vue"
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:"/register",
+    component:register
+  },
+  {
+    path:"/login",
+    component:login
+  },
   //footer地址
   {
     path:"/footer",
