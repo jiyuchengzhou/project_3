@@ -127,12 +127,15 @@
                 <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
             </div>
         </div>
-
+    <footicon></footicon>
     </div>    
 </template>
 <script>
+import foot from "../common/footerIcon";
 export default {
-    
+    components:{
+        foot:foot
+    }
 }
 </script>
 <style scoped>

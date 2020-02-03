@@ -10,10 +10,28 @@ import footer from "@/components/common/footerIcon.vue";
 import login from "@/components/common/login.vue"
 // 引入注册组件
 import register from "@/components/common/register.vue"
+//引入购物车页面
+import cart from "@/components/common/cart.vue"
+//引入分类页面
+import fenlei from "@/components/common/fenlei.vue"
+//引入我的页面
+import wode from "@/components/common/wode.vue"
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:"/wode",
+    component:wode
+  },
+  {
+    path:"/fenlei",
+    component:fenlei
+  },
+  {
+    path:"/cart",
+    component:cart
+  },
   {
     path:"/register",
     component:register
@@ -23,11 +41,11 @@ const routes = [
     component:login
   },
   //footer地址
-  {
-    path:"/footer",
-    name:footer,
-    component:footer
-  },
+  // {
+  //   path:"/footer",
+  //   name:footer,
+  //   component:footer
+  // },
   //header地址
   {
     path:"/header",
