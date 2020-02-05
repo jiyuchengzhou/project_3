@@ -16,10 +16,16 @@ import cart from "@/components/common/cart.vue"
 import fenlei from "@/components/common/fenlei.vue"
 //引入我的页面
 import wode from "@/components/common/wode.vue"
+//引入商品详情页
+import details from "@/components/common/details.vue"
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:"/details",
+    component:details
+  },
   {
     path:"/wode",
     component:wode

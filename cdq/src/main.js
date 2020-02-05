@@ -11,6 +11,10 @@ import MintUI from "mint-ui"
 import axios from 'axios'
 //2.单独引入mint-ui组件库中样式文件
 import "mint-ui/lib/style.css"
+//引入swiper插件
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(VueAwesomeSwiper)
+import 'swiper/css/swiper.css'
 // 配置访问服务器基础路径
 axios.defaults.baseURL = 'http://127.0.0.1:4000/';
 //3.注册MintUI对象
