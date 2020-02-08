@@ -20,9 +20,9 @@
         <div style="height:50px;width:100%"></div>
         <!-- 主体区域 -->
         <div>
-            <div>
+            <!-- <div>
                 <a href=""><img style="width:100%;height:auto;" src="../img/souye/gonggao.jpg" alt=""></a>
-            </div>
+            </div> -->
             <div>
                 <a href=""><img style="width:100%;height:auto;" src="../img/souye/01.png" alt=""></a>
             </div>
@@ -126,19 +126,23 @@
                 <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
                 <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
             </div>
+            
         </div>
-    <footicon></footicon>
+        <!-- 撑开位置 -->
+        <div class="cheng"></div>
     </div>    
 </template>
 <script>
-import foot from "../common/footerIcon";
+
 export default {
-    components:{
-        foot:foot
-    }
+   
+   
 }
 </script>
 <style scoped>
+    .cheng{
+        height:65px;
+    }
     /* 消除图片间隙 */
     img {
         vertical-align:top;

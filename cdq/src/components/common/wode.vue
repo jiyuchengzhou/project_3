@@ -131,6 +131,8 @@
         </div>
         <!-- 背景铺满剩下的地方 -->
         <div style="width:100%;height:100%;background:rgb(242, 242, 242);position:fixed;"></div>
+        <!-- 撑开位置 -->
+        <div class="cheng"></div>
     </div>
 </template>
 <script>
@@ -139,6 +141,9 @@ export default {
 }
 </script>
 <style scoped>
+    .cheng{
+        height:65px;
+    }
     .btn{
         width:90%;
         display: block;

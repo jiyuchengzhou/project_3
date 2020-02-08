@@ -20,226 +20,84 @@
             <div>
                 <!-- 左边分类列表 -->
                 <ul>
-                    <li>犬主粮</li>
+                    <li style="border-top:none">犬主粮</li>
                     <li>猫主粮</li>
                     <li>宠物零食</li>
                     <li>保健品</li>
                     <li>美容清洁</li>
                     <li>用品玩具</li>
+                    <!-- 背景铺满剩下的地方 -->
+                    <li style="height:1000px;background:white;display:block;"></li>
                 </ul>
+                 
             </div>
             <!-- 右侧分类选项 -->
-            <div class="r-fenlei">
-                <img class="w-100" src="../img/fenlei/1.jpg" alt="">
-                <mt-button class="btn" type="danger">进入犬粮频道</mt-button>
-                <a class="clear_a m_t" href=""> <span> <b>按品牌分</b> </span> <img class="f_r" src="../img/fenlei/dy.png" alt=""> </a>
-                <!-- 品牌 -->
-                <div class="pingpai">
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
+            <div class="zanwei">
+                <div class="r-fenlei " style="width:98%;">
+                    <img class="w-100" src="../img/fenlei/1.jpg" alt="">
+                    <mt-button class="btn w-100" type="danger">进入犬粮频道</mt-button>
+                    <a class="clear_a m_t " href=""> 
+                        <span> 
+                            <b>按品牌分</b> 
+                        </span> 
+                        <img class="f_r" src="../img/fenlei/dy.png" alt=""> 
+                    </a>
+                    <!-- 品牌 -->
+                    <div class="pingpai">
+                        <!-- 循环生成 -->
+                        <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+                            <img class="logo" :src="item.src" alt="">
+                            <div>
+                                {{item.name}}
+                            </div>
+                        </div>
+                        
+                    
                     </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                    <div class="pingpai_1">
-                         <img class="logo" src="../img/fenlei/pingpai/QuanZL/logo1.webp" alt="">
-                         <div>
-                             比瑞吉
-                         </div>
-                    </div>
-                   
                 </div>
+                 <!-- 撑开位置 -->
+                <div class="cheng"></div>
             </div>
         </div>
     </div>
 </template>
 <script>
 export default {
-    
+    data(){
+        return{
+            pingpai:[
+                {src:require('../img/fenlei/pingpai/QuanZL/logo1.webp'),name:"比瑞吉"},
+                {src:require('../img/fenlei/pingpai/QuanZL/logo1.webp'),name:"比瑞吉"},
+                {src:require('../img/fenlei/pingpai/QuanZL/logo1.webp'),name:"比瑞吉"},
+                {src:require('../img/fenlei/pingpai/QuanZL/logo1.webp'),name:"比瑞吉"},
+                {src:require('../img/fenlei/pingpai/QuanZL/logo1.webp'),name:"比瑞吉"},
+                {src:require('../img/fenlei/pingpai/QuanZL/logo1.webp'),name:"比瑞吉"},
+                {src:require('../img/fenlei/pingpai/QuanZL/logo1.webp'),name:"比瑞吉"},
+                {src:require('../img/fenlei/pingpai/QuanZL/logo1.webp'),name:"比瑞吉"},
+                {src:require('../img/fenlei/pingpai/QuanZL/logo1.webp'),name:"比瑞吉"},
+                
+                
+            ]      
+            
+        }
+    }
 }
 </script>
 <style scoped>
-#shousuo{
-        width:100%;
-        border:none;
-        background:rgb(247, 248, 249);
-        border-radius:20px;
-        height:30px;
+    .zanwei{
+       padding-left:80px;
+       margin-right:10px;
     }
+    .cheng{
+        height:65px;
+    }
+    #shousuo{
+            width:100%;
+            border:none;
+            background:rgb(247, 248, 249);
+            border-radius:20px;
+            height:30px;
+        }
     #fdj{
       position: absolute;
       top:14px;
@@ -318,7 +176,7 @@ export default {
         width:100%;
     }
     .r-fenlei{
-        width:75%;
+        width:100%;
         overflow: hidden;
         padding: 10px;
     }
@@ -335,6 +193,7 @@ export default {
         padding:0;
         width:80px;
         position: fixed;
+        margin-top: 2px;
     }
     ul>li{
         border-bottom:1px solid #999;;
@@ -347,8 +206,5 @@ export default {
         cursor: pointer;
         background-color: #fff;
         box-sizing: border-box;
-    }
-    ul:first-child{
-        border-top: 1px solid #999;
     }
 </style>
