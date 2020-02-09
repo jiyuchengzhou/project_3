@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 
 // 引入header组件
 // import header from "@/components/common/header.vue";
+// 引入exam01组件
+import exam01 from "@/components/exam01.vue"
 // 引入Home组件
 import Home from "@/components/Home.vue"
 //引入login组件
@@ -21,6 +23,10 @@ import details from "@/components/common/details.vue"
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:"/exam01",
+    component:exam01
+  },
   {
     path:"/details",
     component:details

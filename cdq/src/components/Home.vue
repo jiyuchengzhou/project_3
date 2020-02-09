@@ -84,6 +84,7 @@ export default {
 <style scoped>
     .fixed{
         position:fixed;
+        z-index:2;
     }
     .img_1{
         background: #f56456;

@@ -33,9 +33,9 @@
             </div>
             <!-- 右侧分类选项 -->
             <div class="zanwei">
-                <div class="r-fenlei " style="width:98%;">
+                <div class="r-fenlei " style="width:100%;">
                     <img class="w-100" src="../img/fenlei/1.jpg" alt="">
-                    <mt-button class="btn w-100" type="danger">进入犬粮频道</mt-button>
+                    <mt-button class="btn " type="danger">进入犬粮频道</mt-button>
                     <a class="clear_a m_t " href=""> 
                         <span> 
                             <b>按品牌分</b> 
@@ -86,7 +86,7 @@ export default {
 <style scoped>
     .zanwei{
        padding-left:80px;
-       margin-right:10px;
+       margin-right:20px;
     }
     .cheng{
         height:65px;
@@ -181,7 +181,6 @@ export default {
         padding: 10px;
     }
     .page{
-        display: flex;
         overflow: hidden;
         justify-content: space-between;
         background: rgb(247, 248, 249);
