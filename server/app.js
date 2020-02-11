@@ -26,7 +26,7 @@ var pool = mysql.createPool({
 var server = express();
 server.use(cors({
   //允许:脚手架访问服务器
-  origin:["http://127.0.0.1:8080","http://localhost:8080"],
+  origin:["http://127.0.0.1:8080","http://localhost:8080","http://192.168.0.108:8080"],
   //每次请求加验证
   credentials:true
 }))
@@ -82,6 +82,48 @@ server.get("/register",(req,res)=>{
   })
 })
 
+//获得首页商品列表数据
+server.get("/index",(req,res)=>{
+   var sql=`select * from wc_product`;
+   pool.query(sql,(err,result)=>{
+      if(err)throw err;
+      if(result.length>0){
+        res.send(result);
+      }else{
+        res.send("0");
+      }
+  })
+})
+
+//获得商品详情页所需数据
+server.get("/details",(req,res)=>{
+   var id = req.query.id;
+  //创建sql
+   var sql = `SELECT * FROM wc_product where id='${id}'`;
+  //返回结果
+   pool.query(sql,(err,result)=>{
+      if(err)throw err;
+      if(result.length>0){
+        res.send(result);
+      }else{
+        res.send("0");
+      }
+  })
+})
+
+
+//获得购物车商品数据
+server.get("/cart",(req,res)=>{
+  var sql = `SELECT * FROM wc_cart`;
+  pool.query(sql,(err,result)=>{
+     if(err)throw err;
+     if(result.length>0){
+       res.send(result);
+     }else{
+       res.send("0");
+     }
+ })
+})
 
 
 

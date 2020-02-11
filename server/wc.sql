@@ -19,92 +19,33 @@ INSERT INTO wc_user VALUES(2,'dangdang',"123456","15775965901");
 INSERT INTO wc_user VALUES(3,'zhongtao',"123456","15775965901");
 #创建保存首页数据的表
 CREATE TABLE wc_product(
-  pid INT PRIMARY KEY AUTO_INCREMENT,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   intr VARCHAR(64),
   price DECIMAL(7,2),  #99999.99
-  pic VARCHAR(100),
-  pic1 VARCHAR(100),
-  pic2 VARCHAR(100),
-  pic3 VARCHAR(100),
-  pic4 VARCHAR(100),
-  price_y DECIMAL(7,2),
-  store_num INT,
-  sale_num INT,
-  appraise INT
+  src VARCHAR(64),
+  src01 VARCHAR(64),
+  src02 VARCHAR(64),
+  src03 VARCHAR(64),
+  src04 VARCHAR(64),
+  src05 VARCHAR(64)
 
 );
 #插入数据
-INSERT INTO wc_product VALUES(1,'施乐易印70gA4 8包/箱',167,"./image/details/5de0cd8292dad.jpg","./image/details/5de0cd829c1aa.jpg","./image/details/5de0cd8293d42.jpg","./image/details/5de0cd8294a93.jpg","./image/details/5de0d0357eb1d.jpg",175,1000,501,0);
-INSERT INTO wc_product VALUES(2,'APP高档金丝雀彩色复印纸80G 彩色复印纸A4 25/100pcs 500页/本 蓝/黄/粉/绿',12.50,"./image/details/index2/01.jpg","./image/details/index2/02.jpg","./image/details/index2/03.jpg","./image/details/index2/04.jpg","./image/details/index2/05.jpg",14.5,1000,502,0);
-INSERT INTO wc_product VALUES(3,'DoubleA复印纸A3 70g/80g (500张) 5包/箱',330,"./image/details/index3/01.jpg","./image/details/index3/02.jpg","./image/details/index3/03.jpg","./image/details/index3/04.jpg","./image/details/index3/05.jpg",290.5,1000,502,0);
-INSERT INTO wc_product VALUES(4,'得力7682螺旋装订笔记本A5 (50页）',3.00,"./image/details/index4/01.jpg","./image/details/index4/02.jpg","./image/details/index4/03.jpg","./image/details/index4/04.jpg","./image/details/index4/05.jpg",2.85,1000,502,0);
-INSERT INTO wc_product VALUES(5,'快力文A4不干胶哑面（100张/包）',18.00,"./image/details/index5/01.jpg","./image/details/index5/02.jpg","./image/details/index5/03.jpg","./image/details/index5/04.jpg","./image/details/index5/05.jpg",16.72,1000,502,0);
-INSERT INTO wc_product VALUES(6,'施乐易印70gA4 8包/箱',167,"./image/details/5de0cd8292dad.jpg","./image/details/5de0cd829c1aa.jpg","./image/details/5de0cd8293d42.jpg","./image/details/5de0cd8294a93.jpg","./image/details/5de0d0357eb1d.jpg",175,1000,501,0);
-INSERT INTO wc_product VALUES(7,'APP高档金丝雀彩色复印纸80G 彩色复印纸A4 25/100pcs 500页/本 蓝/黄/粉/绿',12.50,"./image/details/index2/01.jpg","./image/details/index2/02.jpg","./image/details/index2/03.jpg","./image/details/index2/04.jpg","./image/details/index2/05.jpg",14.5,1000,502,0);
-INSERT INTO wc_product VALUES(8,'DoubleA复印纸A3 70g/80g (500张) 5包/箱',330,"./image/details/index3/01.jpg","./image/details/index3/02.jpg","./image/details/index3/03.jpg","./image/details/index3/04.jpg","./image/details/index3/05.jpg",290.5,1000,502,0);
-INSERT INTO wc_product VALUES(9,'得力7682螺旋装订笔记本A5 (50页）',3.00,"./image/details/index4/01.jpg","./image/details/index4/02.jpg","./image/details/index4/03.jpg","./image/details/index4/04.jpg","./image/details/index4/05.jpg",2.85,1000,502,0);
-INSERT INTO wc_product VALUES(10,'快力文A4不干胶哑面（100张/包）',18.00,"./image/details/index5/01.jpg","./image/details/index5/02.jpg","./image/details/index5/03.jpg","./image/details/index5/04.jpg","./image/details/index5/05.jpg",16.72,1000,502,0);
-INSERT INTO wc_product VALUES(11,'施乐易印70gA4 8包/箱',167,"./image/details/5de0cd8292dad.jpg","./image/details/5de0cd829c1aa.jpg","./image/details/5de0cd8293d42.jpg","./image/details/5de0cd8294a93.jpg","./image/details/5de0d0357eb1d.jpg",175,1000,501,0);
-INSERT INTO wc_product VALUES(12,'APP高档金丝雀彩色复印纸80G 彩色复印纸A4 25/100pcs 500页/本 蓝/黄/粉/绿',12.50,"./image/details/index2/01.jpg","./image/details/index2/02.jpg","./image/details/index2/03.jpg","./image/details/index2/04.jpg","./image/details/index2/05.jpg",14.5,1000,502,0);
-INSERT INTO wc_product VALUES(13,'DoubleA复印纸A3 70g/80g (500张) 5包/箱',330,"./image/details/index3/01.jpg","./image/details/index3/02.jpg","./image/details/index3/03.jpg","./image/details/index3/04.jpg","./image/details/index3/05.jpg",290.5,1000,502,0);
-INSERT INTO wc_product VALUES(14,'得力7682螺旋装订笔记本A5 (50页）',3.00,"./image/details/index4/01.jpg","./image/details/index4/02.jpg","./image/details/index4/03.jpg","./image/details/index4/04.jpg","./image/details/index4/05.jpg",2.85,1000,502,0);
-INSERT INTO wc_product VALUES(15,'快力文A4不干胶哑面（100张/包）',18.00,"./image/details/index5/01.jpg","./image/details/index5/02.jpg","./image/details/index5/03.jpg","./image/details/index5/04.jpg","./image/details/index5/05.jpg",16.72,1000,502,0);
+INSERT INTO wc_product VALUES(1,"特价促销  诺瑞犬用羊乳钙片110g 220片 通用型幼犬怀孕狗 补钙",30,'img/souye/ex.jpg','img/details/1/1.jpg','img/details/1/2.jpg','img/details/1/3.jpg','img/details/1/4.jpg','img/details/1/5.jpg');
+INSERT INTO wc_product VALUES(2,"特价促销  麦德氏超浓缩卵磷脂培根味680g 美毛亮毛滋养毛囊 680g",89,'img/details/2/01.jpg','img/details/2/1.jpg','img/details/2/2.jpg','img/details/2/3.jpg','img/details/2/4.jpg','img/details/2/5.jpg');
+INSERT INTO wc_product VALUES(3,"特价促销  佳尔全价成猫粮1.5kg",55,'img/details/3/01.jpg','img/details/3/1.jpg','img/details/3/2.jpg','img/details/3/3.jpg','img/details/3/4.jpg','img/details/3/5.jpg');
+INSERT INTO wc_product VALUES(4,"特价促销  哈美特 涤纶珠纹项圈带+牵引带  宠物牵引绳双色间色、 多色 间色双色 S",25,'img/details/4/01.jpg','img/details/4/1.jpg','img/details/4/2.jpg','img/details/4/3.jpg','img/details/4/4.jpg','img/details/4/5.jpg');
+INSERT INTO wc_product VALUES(5,"特价促销  魔方 tea time 健体强心卵磷脂400g",50,'img/details/5/01.jpg','img/details/5/1.jpg','img/details/5/2.jpg','img/details/5/3.jpg','img/details/5/4.jpg','img/details/5/5.jpg');
+
 #创建保存购物车数据的表
 CREATE TABLE wc_cart(
-  pid INT PRIMARY KEY AUTO_INCREMENT,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   intr VARCHAR(64),
   price DECIMAL(7,2),  #99999.99
-  pic VARCHAR(100)
+  src VARCHAR(100),
+  guige VARCHAR(64)
 );
 #插入数据
-INSERT INTO wc_cart VALUES(1,'ThinkPadE470',3999,"./image/details/5de0cd8292dad.jpg");
-INSERT INTO wc_cart VALUES(2,'灵越1500',1959,"./image/details/5de0cd8292dad.jpg");
-INSERT INTO wc_cart VALUES(3,'小米Air',15645,"./image/details/5de0cd8292dad.jpg");
+INSERT INTO wc_cart VALUES(1,'特  英国K魔方 幼犬猫专用羊奶粉350g',88.00,'img/cart/1.png',"30g");
 
 
--- CREATE TABLE klw_second(
---   pid INT PRIMARY KEY AUTO_INCREMENT,
---   intr VARCHAR(64),
---   price DECIMAL(7,2),  #99999.99
---   pic VARCHAR(100),
---   pic1 VARCHAR(100),
---   pic2 VARCHAR(100),
---   pic3 VARCHAR(100),
---   pic4 VARCHAR(100),
---   price_y DECIMAL(7,2),
---   store_num INT,
---   sale_num INT,
---   appraise INT
-
--- );
--- #插入数据
--- INSERT INTO klw_second VALUES(1,'施乐易印70gA4 8包/箱',167,"./image/details/5de0cd8292dad.jpg","./image/details/5de0cd829c1aa.jpg","./image/details/5de0cd8293d42.jpg","./image/details/5de0cd8294a93.jpg","./image/details/5de0d0357eb1d.jpg",175,1000,501,0);
--- INSERT INTO klw_second VALUES(2,'快力文A4不干胶哑面（100张/包）',18.00,"./image/details/index5/01.jpg","./image/details/index5/02.jpg","./image/details/index5/03.jpg","./image/details/index5/04.jpg","./image/details/index5/05.jpg",16.72,1000,502,0);
--- INSERT INTO klw_second VALUES(3,'DoubleA复印纸A3 70g/80g (500张) 5包/箱',330,"./image/details/index3/01.jpg","./image/details/index3/02.jpg","./image/details/index3/03.jpg","./image/details/index3/04.jpg","./image/details/index3/05.jpg",290.5,1000,502,0);
--- INSERT INTO klw_second VALUES(4,'APP高档金丝雀彩色复印纸80G 彩色复印纸A4 25/100pcs 500页/本 蓝/黄/粉/绿',12.50,"./image/details/index2/01.jpg","./image/details/index2/02.jpg","./image/details/index2/03.jpg","./image/details/index2/04.jpg","./image/details/index2/05.jpg",14.5,1000,502,0);
--- INSERT INTO klw_second VALUES(5,'得力7682螺旋装订笔记本A5 (50页）',3.00,"./image/details/index4/01.jpg","./image/details/index4/02.jpg","./image/details/index4/03.jpg","./image/details/index4/04.jpg","./image/details/index4/05.jpg",2.85,1000,502,0);
--- INSERT INTO klw_second VALUES(6,'得力7682螺旋装订笔记本A5 (50页）',3.00,"./image/details/index4/01.jpg","./image/details/index4/02.jpg","./image/details/index4/03.jpg","./image/details/index4/04.jpg","./image/details/index4/05.jpg",2.85,1000,502,0);
--- INSERT INTO klw_second VALUES(7,'APP高档金丝雀彩色复印纸80G 彩色复印纸A4 25/100pcs 500页/本 蓝/黄/粉/绿',12.50,"./image/details/index2/01.jpg","./image/details/index2/02.jpg","./image/details/index2/03.jpg","./image/details/index2/04.jpg","./image/details/index2/05.jpg",14.5,1000,502,0);
--- INSERT INTO klw_second VALUES(8,'施乐易印70gA4 8包/箱',167,"./image/details/5de0cd8292dad.jpg","./image/details/5de0cd829c1aa.jpg","./image/details/5de0cd8293d42.jpg","./image/details/5de0cd8294a93.jpg","./image/details/5de0d0357eb1d.jpg",175,1000,501,0);
--- INSERT INTO klw_second VALUES(9,'快力文A4不干胶哑面（100张/包）',18.00,"./image/details/index5/01.jpg","./image/details/index5/02.jpg","./image/details/index5/03.jpg","./image/details/index5/04.jpg","./image/details/index5/05.jpg",16.72,1000,502,0);
--- INSERT INTO klw_second VALUES(10,'DoubleA复印纸A3 70g/80g (500张) 5包/箱',330,"./image/details/index3/01.jpg","./image/details/index3/02.jpg","./image/details/index3/03.jpg","./image/details/index3/04.jpg","./image/details/index3/05.jpg",290.5,1000,502,0);
--- INSERT INTO klw_second VALUES(11,'APP高档金丝雀彩色复印纸80G 彩色复印纸A4 25/100pcs 500页/本 蓝/黄/粉/绿',12.50,"./image/details/index2/01.jpg","./image/details/index2/02.jpg","./image/details/index2/03.jpg","./image/details/index2/04.jpg","./image/details/index2/05.jpg",14.5,1000,502,0);
--- INSERT INTO klw_second VALUES(12,'施乐易印70gA4 8包/箱',167,"./image/details/5de0cd8292dad.jpg","./image/details/5de0cd829c1aa.jpg","./image/details/5de0cd8293d42.jpg","./image/details/5de0cd8294a93.jpg","./image/details/5de0d0357eb1d.jpg",175,1000,501,0);
--- INSERT INTO klw_second VALUES(13,'DoubleA复印纸A3 70g/80g (500张) 5包/箱',330,"./image/details/index3/01.jpg","./image/details/index3/02.jpg","./image/details/index3/03.jpg","./image/details/index3/04.jpg","./image/details/index3/05.jpg",290.5,1000,502,0);
--- INSERT INTO klw_second VALUES(14,'快力文A4不干胶哑面（100张/包）',18.00,"./image/details/index5/01.jpg","./image/details/index5/02.jpg","./image/details/index5/03.jpg","./image/details/index5/04.jpg","./image/details/index5/05.jpg",16.72,1000,502,0);
--- INSERT INTO klw_second VALUES(15,'得力7682螺旋装订笔记本A5 (50页）',3.00,"./image/details/index4/01.jpg","./image/details/index4/02.jpg","./image/details/index4/03.jpg","./image/details/index4/04.jpg","./image/details/index4/05.jpg",2.85,1000,502,0);
--- INSERT INTO klw_second VALUES(16,'施乐易印70gA4 8包/箱',167,"./image/details/5de0cd8292dad.jpg","./image/details/5de0cd829c1aa.jpg","./image/details/5de0cd8293d42.jpg","./image/details/5de0cd8294a93.jpg","./image/details/5de0d0357eb1d.jpg",175,1000,501,0);
--- INSERT INTO klw_second VALUES(17,'快力文A4不干胶哑面（100张/包）',18.00,"./image/details/index5/01.jpg","./image/details/index5/02.jpg","./image/details/index5/03.jpg","./image/details/index5/04.jpg","./image/details/index5/05.jpg",16.72,1000,502,0);
--- INSERT INTO klw_second VALUES(18,'DoubleA复印纸A3 70g/80g (500张) 5包/箱',330,"./image/details/index3/01.jpg","./image/details/index3/02.jpg","./image/details/index3/03.jpg","./image/details/index3/04.jpg","./image/details/index3/05.jpg",290.5,1000,502,0);
--- INSERT INTO klw_second VALUES(19,'APP高档金丝雀彩色复印纸80G 彩色复印纸A4 25/100pcs 500页/本 蓝/黄/粉/绿',12.50,"./image/details/index2/01.jpg","./image/details/index2/02.jpg","./image/details/index2/03.jpg","./image/details/index2/04.jpg","./image/details/index2/05.jpg",14.5,1000,502,0);
--- INSERT INTO klw_second VALUES(20,'得力7682螺旋装订笔记本A5 (50页）',3.00,"./image/details/index4/01.jpg","./image/details/index4/02.jpg","./image/details/index4/03.jpg","./image/details/index4/04.jpg","./image/details/index4/05.jpg",2.85,1000,502,0);
--- INSERT INTO klw_second VALUES(default,'得力7682螺旋装订笔记本A5 (50页）',3.00,"./image/details/index4/01.jpg","./image/details/index4/02.jpg","./image/details/index4/03.jpg","./image/details/index4/04.jpg","./image/details/index4/05.jpg",2.85,1000,502,0);
--- INSERT INTO klw_second VALUES(default,'APP高档金丝雀彩色复印纸80G 彩色复印纸A4 25/100pcs 500页/本 蓝/黄/粉/绿',12.50,"./image/details/index2/01.jpg","./image/details/index2/02.jpg","./image/details/index2/03.jpg","./image/details/index2/04.jpg","./image/details/index2/05.jpg",14.5,1000,502,0);
--- INSERT INTO klw_second VALUES(default,'施乐易印70gA4 8包/箱',167,"./image/details/5de0cd8292dad.jpg","./image/details/5de0cd829c1aa.jpg","./image/details/5de0cd8293d42.jpg","./image/details/5de0cd8294a93.jpg","./image/details/5de0d0357eb1d.jpg",175,1000,501,0);
--- INSERT INTO klw_second VALUES(default,'快力文A4不干胶哑面（100张/包）',18.00,"./image/details/index5/01.jpg","./image/details/index5/02.jpg","./image/details/index5/03.jpg","./image/details/index5/04.jpg","./image/details/index5/05.jpg",16.72,1000,502,0);
--- INSERT INTO klw_second VALUES(default,'DoubleA复印纸A3 70g/80g (500张) 5包/箱',330,"./image/details/index3/01.jpg","./image/details/index3/02.jpg","./image/details/index3/03.jpg","./image/details/index3/04.jpg","./image/details/index3/05.jpg",290.5,1000,502,0);
--- INSERT INTO klw_second VALUES(default,'APP高档金丝雀彩色复印纸80G 彩色复印纸A4 25/100pcs 500页/本 蓝/黄/粉/绿',12.50,"./image/details/index2/01.jpg","./image/details/index2/02.jpg","./image/details/index2/03.jpg","./image/details/index2/04.jpg","./image/details/index2/05.jpg",14.5,1000,502,0);
--- INSERT INTO klw_second VALUES(default,'施乐易印70gA4 8包/箱',167,"./image/details/5de0cd8292dad.jpg","./image/details/5de0cd829c1aa.jpg","./image/details/5de0cd8293d42.jpg","./image/details/5de0cd8294a93.jpg","./image/details/5de0d0357eb1d.jpg",175,1000,501,0);
--- INSERT INTO klw_second VALUES(default,'DoubleA复印纸A3 70g/80g (500张) 5包/箱',330,"./image/details/index3/01.jpg","./image/details/index3/02.jpg","./image/details/index3/03.jpg","./image/details/index3/04.jpg","./image/details/index3/05.jpg",290.5,1000,502,0);
--- INSERT INTO klw_second VALUES(default,'快力文A4不干胶哑面（100张/包）',18.00,"./image/details/index5/01.jpg","./image/details/index5/02.jpg","./image/details/index5/03.jpg","./image/details/index5/04.jpg","./image/details/index5/05.jpg",16.72,1000,502,0);
--- INSERT INTO klw_second VALUES(default,'得力7682螺旋装订笔记本A5 (50页）',3.00,"./image/details/index4/01.jpg","./image/details/index4/02.jpg","./image/details/index4/03.jpg","./image/details/index4/04.jpg","./image/details/index4/05.jpg",2.85,1000,502,0);

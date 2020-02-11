@@ -17,10 +17,10 @@
 						<input type="checkbox" class="p-center" @click="singleChecked()" >
 					</div>
 					<div class="g2">
-						<img class="cart_img" :src="item.src" alt="">
+						<img class="cart_img" :src="require('../'+item.src)" alt="">
 					</div>
 					<div class="g3">
-						<div class="intr">{{item.name}}</div>
+						<div class="intr">{{item.intr}}</div>
 						<div class="guige"><span>规格:</span><span>{{item.guige}}</span></div>
 						<div>
 							<span class="price"><span>¥</span> <span>{{item.price}}</span></span>
@@ -57,12 +57,11 @@
 export default {
     data(){
 		return{
-			products:[
-				{src:require('../img/cart/1.png'),name:'特价促销  英国K魔方 幼犬猫专用羊奶粉350g',guige:'350g',price:'88.00'},
-				{src:require('../img/cart/1.png'),name:'特价促销  英国K魔方 幼犬猫专用羊奶粉350g',guige:'350g',price:'88.00'},
-				{src:require('../img/cart/1.png'),name:'特价促销  英国K魔方 幼犬猫专用羊奶粉350g',guige:'350g',price:'88.00'},
+			products:[],
+			// products:[
+			// 	{src:'img/cart/1.png',intr:'特价促销  英国K魔方 幼犬猫专用羊奶粉350g',guige:'350g',price:'88.00'},
 				
-			],
+			// ],
 			isAllChecked:false,
 			total_p:'0.00',
 		}
@@ -147,9 +146,14 @@ export default {
 			}
 			this.total_p=sum.toFixed(2)
 		}
-		
-    
-    },
+	},
+	created:function(){
+            var url="cart";
+            this.axios.get(url).then(res=>{
+                console.log(res.data)
+                this.products=res.data
+            })
+   }
 
 
 };

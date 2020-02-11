@@ -85,6 +85,7 @@ export default {
     .fixed{
         position:fixed;
         z-index:2;
+        bottom:0;
     }
     .img_1{
         background: #f56456;

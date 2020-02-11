@@ -51,6 +51,11 @@ const routes = [
     path:"/login",
     component:login
   },
+  // 转换路径
+  {
+    path:"/",
+    redirect:"/home"
+  },
   // Home地址
   {
     path:"/home",

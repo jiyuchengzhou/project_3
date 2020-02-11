@@ -63,7 +63,7 @@ export default {
             this.axios.get(url,{params:obj}).then(res=>{
                 if(res.data==1){
                     console.log("登录成功")
-                    this.$router.push("/header");
+                    this.$router.push("/home");
                 }else{
                     console.log("登录失败")
                     console.log(res)

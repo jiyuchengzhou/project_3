@@ -4,27 +4,29 @@
             <!-- 轮播图区域 -->
             <div class="_swiper">     
                 <swiper   :options="swiperOption" touch-action=none;>
-                    <swiper-slide>
-                        <img  src="../img/details/1/1.jpg" class="swiper_img" alt="">
+                    
+                    <swiper-slide >
+                        <img  :src="require('../'+products.src01)" class="swiper_img" alt="">
                     </swiper-slide>
-                    <swiper-slide>
-                        <img src="../img/details/1/2.jpg" class="swiper_img" alt="">
+                    <swiper-slide >
+                        <img  :src="require('../'+products.src02)" class="swiper_img" alt="">
                     </swiper-slide>
-                    <swiper-slide>
-                        <img src="../img/details/1/3.jpg" class="swiper_img" alt="">
+                    <swiper-slide >
+                        <img  :src="require('../'+products.src03)" class="swiper_img" alt="">
                     </swiper-slide>
-                    <swiper-slide>
-                        <img src="../img/details/1/4.jpg" class="swiper_img" alt="">
+                    <swiper-slide >
+                        <img  :src="require('../'+products.src04)" class="swiper_img" alt="">
                     </swiper-slide>
-                    <swiper-slide>
-                        <img src="../img/details/1/5.jpg" class="swiper_img" alt="">
-                    </swiper-slide>           
+                    <swiper-slide >
+                        <img  :src="require('../'+products.src05)" class="swiper_img" alt="">
+                    </swiper-slide>
+                             
                 </swiper>
             </div>
             <div class="bg_white">
                <!-- 商品名 -->
                 <div class="d-flex intr">
-                    <div class="w-80 ">特价促销 诺瑞犬用羊乳钙片 110g 220片 通用型幼犬怀孕狗 补钙</div>
+                    <div class="w-80 ">{{products.intr}}</div>
                     <div class="share">
                         <div > <img style="width:20px" src="../img/details/fenxiang.png" alt=""> </div>
                         <div >分享</div>
@@ -32,7 +34,7 @@
                 </div>
                 <!-- 价格 -->
                 <div class="d-flex">
-                    <div class="price">¥<span>30.00</span></div>
+                    <div class="price">¥<span>{{products.price}}</span></div>
                     <div class="xiaoliang"><span>销量</span> <span>14</span> <span>件</span></div>
                 </div> 
             </div>
@@ -91,9 +93,11 @@
 // 引入swiper组件
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
- name: '',
   data () {
     return {
+       products:{},
+        // products:{intr:"特价促销 诺瑞犬用羊乳钙片 110g 220片 通用型幼犬怀孕狗 补钙",price:30,src01:'img/details/1/1.jpg' },
+        //轮播图所需参数
       swiperOption:{
         slidesPerView: 'auto',
         centeredSlides:true,
@@ -111,7 +115,19 @@ export default {
   components: {
     swiper,
     swiperSlide
-  }
+  },
+    // 从服务器获取商品数据
+    created: function() {
+        var id=this.$route.query.id;
+        console.log(id)
+        var obj={id}
+        var url='details'
+        this.axios.get(url,{params:obj}).then(res=>{
+                console.log(res.data[0])
+                this.products=res.data[0]
+            }) 
+    }
+
 
 }
 </script>

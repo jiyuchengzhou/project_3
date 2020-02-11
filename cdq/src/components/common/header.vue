@@ -49,15 +49,21 @@
             </div>
             <!-- 横向商品展示区 -->
             <div style="width:100%;height:auto;display:flex;flex-wrap:nowrap;overflow:auto;">
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:27%;background:white;padding:5px;flex-shrink:0" v-for="(item,i) in products" :key=i>
+                    <router-link :to="{path:'/details',query:{ id:item.id }}" style="text-decoration:none">
+                         <img style="width:100%;height:auto;" :src="require('../'+item.src)" alt="">
+                        <div style="color:black;height:38px;overflow:hidden;">{{item.intr}}</div>
+                    </router-link>
+                   
+                    <div style="margin:10px 0;"> <span style="color:#f56456">¥</span> <span style="color:#f56456">{{item.price}}</span><span @click="addCart(item.id)" style="float:right;border:1px solid black;width:20px;height:20px;border-radius:50%;text-align:center;">+</span></div>
+                </div>
+                
+                
+                
+               
             </div>
             <!-- 固定商品展示区 -->
-            <div style="width:100%;height:100px;background:yellow;"></div>
+            <!-- <div style="width:100%;height:100px;background:yellow;"></div> -->
             <!-- 爆品团购区 -->
             <div style="display:flex;flex-wrap:wrap;">
                 <div style="width:100%;">
@@ -119,12 +125,14 @@
             </div>
             <!-- 横向商品展示区 -->
             <div style="width:100%;height:auto;display:flex;flex-wrap:nowrap;overflow:auto;">
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
-                <div style="width:30%;height:100px;background:red;margin:2px;flex-shrink:0"></div>
+                <div style="width:27%;background:white;padding:5px;flex-shrink:0" v-for="(item,i) in products" :key=i>
+                    <router-link :to="{path:'/details',query:{ id:item.id }}" style="text-decoration:none">
+                         <img style="width:100%;height:auto;" :src="item.src" alt="">
+                        <div style="color:black;">{{item.intr}}</div>
+                    </router-link>
+                   
+                    <div> <span style="color:#f56456">¥</span> <span style="color:#f56456">{{item.price}}</span><span style="float:right;border:1px solid black;width:20px;height:20px;border-radius:50%;text-align:center;">+</span></div>
+                </div>
             </div>
             
         </div>
@@ -133,10 +141,36 @@
     </div>    
 </template>
 <script>
-
 export default {
-   
-   
+   data(){
+       return{
+        //    products:[
+        //        {id:1,src:'img/souye/ex.jpg',intr:"特价促销  诺瑞犬用羊乳钙片110g 220片 通用型幼犬怀孕狗 补钙",price:30,},
+               
+        //    ]
+        products:[]
+       }
+   },
+   methods:{
+       addCart(i){
+        var id=i
+        var obj={id}
+        var url='details'
+        this.axios.get(url,{params:obj}).then(res=>{
+                console.log(res.data[0])
+                
+            }) 
+       }
+   },
+   created:function(){
+            var url="index";
+            this.axios.get(url).then(res=>{
+                console.log(res.data[0])
+                this.products=res.data
+            })
+   }
+
+
 }
 </script>
 <style scoped>
