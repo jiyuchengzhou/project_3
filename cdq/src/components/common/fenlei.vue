@@ -1,6 +1,6 @@
 <template>
     <div>
-         <!-- 上面搜索框 -->
+        <!-- 上面搜索框 -->
         <div class="top">
             <!-- 分类按键 -->
             <div class="caidan">
@@ -20,21 +20,158 @@
             <div>
                 <!-- 左边分类列表 -->
                 <ul>
-                    <li style="border-top:none">犬主粮</li>
-                    <li>猫主粮</li>
-                    <li>宠物零食</li>
-                    <li>保健品</li>
-                    <li>美容清洁</li>
-                    <li>用品玩具</li>
+                    <li style="border-top:none" :class="{'active':select_num==1}" @click="select(1)">犬主粮</li>
+                    <li :class="{'active':select_num==2}" @click="select(2)">猫主粮</li>
+                    <li :class="{'active':select_num==3}" @click="select(3)">宠物零食</li>
+                    <li :class="{'active':select_num==4}" @click="select(4)">保健品</li>
+                    <li :class="{'active':select_num==5}" @click="select(5)">美容清洁</li>
+                    <li :class="{'active':select_num==6}" @click="select(6)">用品玩具</li>
                     <!-- 背景铺满剩下的地方 -->
-                    <li style="height:1000px;background:white;display:block;"></li>
+                    <li class="pu"></li>
                 </ul>
                  
             </div>
-            <!-- 右侧分类选项 -->
-            <div class="zanwei">
+            <!--犬主粮 右侧分类选项 -->
+            <div class="zanwei" v-show="select_num==1">
                 <div class="r-fenlei " style="width:100%;">
                     <img class="w-100" src="../img/fenlei/1.jpg" alt="">
+                    <mt-button class="btn " type="danger">进入犬粮频道</mt-button>
+                    <a class="clear_a m_t " href=""> 
+                        <span> 
+                            <b>按品牌分</b> 犬主粮
+                        </span> 
+                        <img class="f_r" src="../img/fenlei/dy.png" alt=""> 
+                    </a>
+                    <!-- 品牌 -->
+                    <div class="pingpai">
+                        <!-- 循环生成 -->
+                        <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+                            <img class="logo" :src="item.src" alt="">
+                            <div>
+                                {{item.name}}
+                            </div>
+                        </div>
+                        <!-- <ul style="width:100%;">
+                            <li class="pu"></li>
+                        </ul> -->
+                    </div>
+                    
+                </div>
+                 <!-- 撑开位置 -->
+                <div class="cheng"></div>
+            </div>
+            <!--猫主粮 右侧分类选项 -->
+            <div class="zanwei" v-show="select_num==2">
+                <div class="r-fenlei " style="width:100%;">
+                    <img class="w-100" src="../img/fenlei/2.jpg" alt="">
+                    <mt-button class="btn " type="danger">进入犬粮频道</mt-button>
+                    <a class="clear_a m_t " href=""> 
+                        <span> 
+                            <b>按品牌分</b> 猫主粮
+                        </span> 
+                        <img class="f_r" src="../img/fenlei/dy.png" alt=""> 
+                    </a>
+                    <!-- 品牌 -->
+                    <div class="pingpai">
+                        <!-- 循环生成 -->
+                        <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+                            <img class="logo" :src="item.src" alt="">
+                            <div>
+                                {{item.name}}
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+                 <!-- 撑开位置 -->
+                <div class="cheng"></div>
+            </div>
+            <!--宠物零食 右侧分类选项 -->
+            <div class="zanwei" v-show="select_num==3">
+                <div class="r-fenlei " style="width:100%;">
+                    <img class="w-100" src="../img/fenlei/3.jpg" alt="">
+                    <mt-button class="btn " type="danger">进入犬粮频道</mt-button>
+                    <a class="clear_a m_t " href=""> 
+                        <span> 
+                            <b>按品牌分</b> 宠物零食
+                        </span> 
+                        <img class="f_r" src="../img/fenlei/dy.png" alt=""> 
+                    </a>
+                    <!-- 品牌 -->
+                    <div class="pingpai">
+                        <!-- 循环生成 -->
+                        <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+                            <img class="logo" :src="item.src" alt="">
+                            <div>
+                                {{item.name}}
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+                 <!-- 撑开位置 -->
+                <div class="cheng"></div>
+            </div>
+            <!--保健品 右侧分类选项 -->
+            <div class="zanwei" v-show="select_num==4">
+                <div class="r-fenlei " style="width:100%;">
+                    <img class="w-100" src="../img/fenlei/4.jpg" alt="">
+                    <mt-button class="btn " type="danger">进入犬粮频道</mt-button>
+                    <a class="clear_a m_t " href=""> 
+                        <span> 
+                            <b>按品牌分</b> 保健品
+                        </span> 
+                        <img class="f_r" src="../img/fenlei/dy.png" alt=""> 
+                    </a>
+                    <!-- 品牌 -->
+                    <div class="pingpai">
+                        <!-- 循环生成 -->
+                        <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+                            <img class="logo" :src="item.src" alt="">
+                            <div>
+                                {{item.name}}
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+                 <!-- 撑开位置 -->
+                <div class="cheng"></div>
+            </div>
+            <!--美容清洁 右侧分类选项 -->
+            <div class="zanwei" v-show="select_num==5">
+                <div class="r-fenlei " style="width:100%;">
+                    <img class="w-100" src="../img/fenlei/5.jpg" alt="">
+                    <mt-button class="btn " type="danger">进入犬粮频道</mt-button>
+                    <a class="clear_a m_t " href=""> 
+                        <span> 
+                            <b>按品牌分</b> 美容清洁
+                        </span> 
+                        <img class="f_r" src="../img/fenlei/dy.png" alt=""> 
+                    </a>
+                    <!-- 品牌 -->
+                    <div class="pingpai">
+                        <!-- 循环生成 -->
+                        <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+                            <img class="logo" :src="item.src" alt="">
+                            <div>
+                                {{item.name}}
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+                 <!-- 撑开位置 -->
+                <div class="cheng"></div>
+            </div>
+            <!--用品玩具 右侧分类选项 -->
+            <div class="zanwei" v-show="select_num==6">
+                <div class="r-fenlei " style="width:100%;">
+                    <img class="w-100" src="../img/fenlei/6.jpg" alt="">
                     <mt-button class="btn " type="danger">进入犬粮频道</mt-button>
                     <a class="clear_a m_t " href=""> 
                         <span> 
@@ -58,13 +195,17 @@
                  <!-- 撑开位置 -->
                 <div class="cheng"></div>
             </div>
+        
+        
         </div>
+        <div class="bottom_g"></div>
     </div>
 </template>
 <script>
 export default {
     data(){
         return{
+            select_num:1,
             pingpai:[
                 {src:require('../img/fenlei/pingpai/QuanZL/logo1.webp'),name:"比瑞吉"},
                 {src:require('../img/fenlei/pingpai/QuanZL/logo1.webp'),name:"比瑞吉"},
@@ -80,16 +221,39 @@ export default {
             ]      
             
         }
+    },
+    methods:{
+        // 分类切换
+        select(i){
+            this.select_num=i;
+        }
     }
 }
 </script>
 <style scoped>
+    .bottom_g{
+        height:10px;
+        background: rgb(247, 248, 249);
+        position: fixed;
+        bottom: 55px;
+        width:100%;
+        z-index:100;
+    }    
+    .pu{
+        height:1000px;
+        background:white;
+        display:block;
+        width:100%;
+    }
+    .active{
+        background:rgb(247, 248, 249); 
+    }
     .zanwei{
        padding-left:80px;
        margin-right:20px;
     }
     .cheng{
-        height:65px;
+        height:55px;
     }
     #shousuo{
             width:100%;
@@ -137,11 +301,13 @@ export default {
         align-items: center;
         position:fixed;
         overflow: hidden;
+        z-index: 3;
     }
     .pingpai_1{
         width:33.33%;
         text-align: center;
         margin-top: 20px;
+        z-index: 1;
     }
     .pingpai{
         background: white;
@@ -170,7 +336,7 @@ export default {
         display: block;
         margin:0 auto;
         margin-top: 10px;
-        
+        z-index: 0;
     }
     .w-100{
         width:100%;
@@ -195,7 +361,7 @@ export default {
         margin-top: 2px;
     }
     ul>li{
-        border-bottom:1px solid #999;;
+        border-bottom:3px solid #f7f8f9;
         position: relative;
         width: 100%;
         padding: 15px 10px;

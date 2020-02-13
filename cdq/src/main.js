@@ -26,6 +26,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  store,
+  store,//挂载vuex的store实例
   render: h => h(App)
 }).$mount('#app')

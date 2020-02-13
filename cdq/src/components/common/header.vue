@@ -1,22 +1,24 @@
 <template>
     <div>
         <!-- 上面搜索框 -->
-        <div class="top">
-            <!-- 分类按键 -->
-            <div class="caidan">
-                <img src="../img/caidan.png" style="width:25px;height:25px;"  alt=""><br>
-                <span>分类</span>
+        <router-link :to="{path:'/search'}">
+            <div class="top">
+                <!-- 分类按键 -->
+                <div class="caidan">
+                    <img src="../img/caidan.png" style="width:25px;height:25px;"  alt=""><br>
+                    <span>分类</span>
+                </div>
+                <!-- 搜索框 -->
+                <div style="width:100% ;padding-right:20px;padding-left:6px;">
+                    <img id="fdj" src="../img/fdj.png" alt="">
+                    <input id="shousuo" type="text" placeholder="搜索商品/店铺">
+                </div>
+                <div class="xioaxi">
+                    <img src="../img/xiaoxi.png"  alt=""><br>
+                    <span>消息</span>
+                </div>
             </div>
-            <!-- 搜索框 -->
-            <div style="width:100% ;padding-right:20px;padding-left:6px;">
-                <img id="fdj" src="../img/fdj.png" alt="">
-                <input id="shousuo" type="text" placeholder="搜索商品/店铺">
-            </div>
-            <div class="xioaxi">
-                <img src="../img/xiaoxi.png"  alt=""><br>
-                <span>消息</span>
-            </div>
-        </div>
+        </router-link>
         <div style="height:50px;width:100%"></div>
         <!-- 主体区域 -->
         <div>
@@ -152,20 +154,26 @@ export default {
        }
    },
    methods:{
-       addCart(i){
-        var id=i
-        var obj={id}
-        var url='details'
-        this.axios.get(url,{params:obj}).then(res=>{
-                console.log(res.data[0])
-                
-            }) 
-       }
+        addCart(i){
+            
+            var id=i
+            var url="details";
+            var obj={id}
+            this.axios.get(url,{params:obj}).then(res=>{
+                console.log(res.data) 
+                var obj2=res.data[0] 
+                console.log(obj2)
+                var url='addcart'
+                this.axios.get(url,{params:obj2}).then(res=>{
+                    console.log(res)
+                }) 
+            })   
+        }
    },
    created:function(){
             var url="index";
             this.axios.get(url).then(res=>{
-                console.log(res.data[0])
+                console.log(res)
                 this.products=res.data
             })
    }

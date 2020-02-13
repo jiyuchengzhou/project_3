@@ -125,6 +125,53 @@ server.get("/cart",(req,res)=>{
  })
 })
 
+//添加购物车数据
+server.get("/addcart",(req,res)=>{
+   var src= req.query.src;
+   var price= req.query.price;
+   var yuanid=req.query.id;
+   var intr=req.query.intr;
+   var guige=req.query.guige;
+   var sql=`insert into wc_cart (src,price,yuanid,intr,guige)  values ('${src}','${price}','${yuanid}','${intr}','${guige}')`;
+   pool.query(sql,(err,result)=>{
+      if(err)throw err;
+      if(result.affectedRows>0){
+        res.send("1");
+      }else{
+        res.send("0");
+      }
+  })
+})
+
+// `select * from klw_index1_product where intr like '%${key}%' `
+// 模糊查询
+server.get("/search",(req,res)=>{
+  var key=req.query.key;
+  var sql = `select * from wc_product where intr like '%${key}%' `;
+  pool.query(sql,(err,result)=>{
+     if(err)throw err;
+     if(result.length>0){
+       res.send(result);
+     }else{
+       res.send("0");
+     }
+ })
+})
+
+// let sql=`delete from klw_cart where pid=${pid} `
+//删除购物车内容
+server.get("/del",(req,res)=>{
+   var id= req.query.id;
+   let sql=`delete from wc_cart where id=${id} `
+   pool.query(sql,(err,result)=>{
+      if(err)throw err;
+      if(result.affectedRows>0){
+        res.send("1");
+      }else{
+        res.send("0");
+      }
+  })
+})
 
 
 

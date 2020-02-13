@@ -1,6 +1,6 @@
 <template>
 <div>
-    <!-- <search v-show="currentIndex[4].iSelect==true"></search> -->
+    <searchcom v-show="currentIndex[4].iSelect==true"></searchcom>
     <!-- 切换面板 -->
     <mt-tab-container v-model="active">
         <mt-tab-container-item id="tab1">
@@ -46,27 +46,27 @@ import fenlei from "@/components/common/fenlei.vue"
 import cart from "@/components/common/cart.vue"
 // 引入header组件
 import wode from "@/components/common/wode.vue"
-// // 引入search组件
-// import search from "@/components/common/search.vue"
+// 引入search组件
+import searchcom from "@/components/common/search_com.vue"
 export default {
     components:{
        'headerI':header,
        "fenlei":fenlei,
        "cart":cart,
        "wode":wode,
-    //    "search":search
+       "searchcom":searchcom
     },
     data(){
         return{
-            active:"tab1",//面板id
+            active:"ta1b",//面板id
             //创建数组保存tabbar
             //图片状态
             currentIndex:[
+                {iSelect:false},
+                {iSelect:false},
+                {iSelect:false},
+                {iSelect:false},
                 {iSelect:true},
-                {iSelect:false},
-                {iSelect:false},
-                {iSelect:false},
-                // {iSelect:false},
             ]
             
         }

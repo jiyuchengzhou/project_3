@@ -1,12 +1,15 @@
 <template>
 	<div>
 		<div class="page">
+			<!-- 加载v-model数据 -->
+			<div v-if="guazai"></div>
 			<!-- 头部 -->
 			<mt-header class="fixed" title="购物车">
 				<router-link to="/" slot="left">
 					<mt-button icon="back"></mt-button>
 				</router-link>
-				<mt-button slot="right">管理</mt-button>
+				<mt-button slot="right" v-show="show==1" @click="qiehuan()">管理</mt-button>
+				<mt-button slot="right" v-show="show==2" @click="qiehuan()">完成</mt-button>
 			</mt-header>
 			<div style="height:58px;"></div>
 			<!-- 商品列表 -->
@@ -14,27 +17,33 @@
 			<div id="cart_pro">
 				<div class="product" v-for="(item,i) in products" :key=i>
 					<div class="g1">
-						<input type="checkbox" class="p-center" @click="singleChecked()" >
+						<input type="checkbox" v-model="sel[i]" class="p-center" @click="dan(i)">
 					</div>
 					<div class="g2">
-						<img class="cart_img" :src="require('../'+item.src)" alt="">
+						 <router-link :to="{path:'/details',query:{ id:item.yuanid }}" style="text-decoration:none;color:black;">
+							<img class="cart_img" :src="require('../'+item.src)" alt="">
+						</router-link>
 					</div>
 					<div class="g3">
-						<div class="intr">{{item.intr}}</div>
+						 <router-link :to="{path:'/details',query:{ id:item.yuanid }}" style="text-decoration:none;color:black;">
+							<div class="intr">{{item.intr}}</div>
+						</router-link>
 						<div class="guige"><span>规格:</span><span>{{item.guige}}</span></div>
 						<div>
 							<span class="price"><span>¥</span> <span>{{item.price}}</span></span>
 							<div class="f-r">	
-								<span @click="jian($event)">－</span><input type="text" value="1" class="pri-num"><span @click="add($event)">+</span>
+								<span @click="jian(i)">－</span>
+								<input type="text"  class="pri-num" v-model="num[i]">
+								<span @click="add(i)">+</span>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- 全选那排 -->
-			<div style="display:flex;height:50px;line-height:50px;background:white;position:fixed;bottom:55px;width:100%;z-index=3;">
+			<div v-show="show==1" style="display:flex;height:50px;line-height:50px;background:white;position:fixed;bottom:55px;width:100%;z-index=3;">
 				<div class="w-30">
-					<input class="ml-17" type="checkbox" :checked="isAllChecked" v-on:click='chooseAll()'>
+					<input class="ml-17" type="checkbox" v-model="isAllChecked" @click='chooseAll()'>
 					<span>全选</span>
 				</div>
 				<div class="w-40 ">
@@ -48,6 +57,22 @@
 				</mt-button>
 			</div>
 
+			<!-- 全选管理那排 -->
+			<div v-show="show==2" style="display:flex;height:50px;line-height:50px;background:white;position:fixed;bottom:55px;width:100%;z-index=3;">
+				<div class="w-30">
+					<input class="ml-17" type="checkbox" v-model="isAllChecked" @click='chooseAll()'>
+					<span>全选</span>
+				</div>
+				<div style="width:70%;" class="w-40 ">
+					<div class="f-r">
+						<span @click="del_all()" style="margin-right:10px;">清除</span>
+						<span style="text-align:center;border: 1px solid #ffb254;color: #ffb254;border-radius:15px;font-size:25px;font-weight:400;" class="total">&nbsp;&nbsp;&nbsp;移入收藏夹&nbsp;&nbsp;&nbsp;</span>
+						<span @click="del()" style="border: 1px solid #de2434;color: #de2434;border-radius:15px;font-size:25px;font-weight:400;padding-left:5px;padding-right:5px;" class="">删除</span>
+					</div>
+				</div>
+				
+			</div>
+
 		</div>
 		<!-- 撑开位置 -->
 		<div class="cheng"></div>
@@ -57,6 +82,8 @@
 export default {
     data(){
 		return{
+			guazai:false,
+			num:[],
 			products:[],
 			// products:[
 			// 	{src:'img/cart/1.png',intr:'特价促销  英国K魔方 幼犬猫专用羊奶粉350g',guige:'350g',price:'88.00'},
@@ -64,95 +91,196 @@ export default {
 			// ],
 			isAllChecked:false,
 			total_p:'0.00',
+			show:1,
+			sel:[],
 		}
 	},
 
 	methods:{
 		// 单选
-		singleChecked(){
-			//判断每一个CheckBox是否选中，全选中让全选按钮选中
-			if(this.products.length == document.querySelectorAll('#cart_pro :checked').length){ 
-				this.isAllChecked = true;
-			}else{  // 只要有一个checkbox不选中，让全选按钮不选中
-				this.isAllChecked = false;
+		dan(i){
+			if(this.sel[i]==true){
+				this.sel[i]=false;
+			}else{
+				this.sel[i]=true;
+			};
+			// 判断多选
+			if(sum==this.sel.length){
+				this.isAllChecked=true;
+			}else{
+				this.isAllChecked=false;
 			}
-			// 计算总价
-			var sum=0
-			for(var i=0;i<document.querySelectorAll('#cart_pro :checked').length;i++){
-				var price=document.querySelectorAll('#cart_pro :checked')[i].parentElement.nextElementSibling.nextElementSibling.childNodes[2].firstChild.lastChild.innerHTML
-				var num=document.querySelectorAll('#cart_pro :checked')[i].parentElement.nextElementSibling.nextElementSibling.childNodes[2].lastChild.childNodes[1].value
-				sum=num*price+sum
+			//计算总价
+			var sum=0;
+			for(var a=0;a<this.sel.length;a++){
+				if(this.sel[a]==true){
+					sum+=this.products[i].price*this.num[i]
+				}
 			}
 			this.total_p=sum.toFixed(2)
+		},
+		// 切换管理和完成页面
+		qiehuan(){
+			if(this.show==1){
+				this.show=2
+			}else{
+				this.show=1
+			}
 		},
 		// 全选
 		chooseAll(){
-			if(this.isAllChecked==false){
-				this.isAllChecked=true
-				for(var i=0;i<document.querySelectorAll('#cart_pro .p-center').length;i++){
-					document.querySelectorAll('#cart_pro .p-center')[i].checked=true
-				}	
-			}else{
+			if(this.sel.length==0){
 				this.isAllChecked=false
-				for(var i=0;i<document.querySelectorAll('#cart_pro .p-center').length;i++){
-					document.querySelectorAll('#cart_pro .p-center')[i].checked=false
-				}	
+				
+				console.log(this.sel.length);
+				
+				console.log(this.isAllChecked)
+				return
 			}
-
-			// 计算总价
-			var sum=0
-			for(var i=0;i<document.querySelectorAll('#cart_pro :checked').length;i++){
-				var price=document.querySelectorAll('#cart_pro :checked')[i].parentElement.nextElementSibling.nextElementSibling.childNodes[2].firstChild.lastChild.innerHTML
-				var num=document.querySelectorAll('#cart_pro :checked')[i].parentElement.nextElementSibling.nextElementSibling.childNodes[2].lastChild.childNodes[1].value
-				sum=num*price+sum
+			if(this.isAllChecked==true){
+				this.isAllChecked=false
+				for(var i=0;i<this.sel.length;i++){
+					this.sel[i]=false;
+				}
+			}else{
+				this.isAllChecked=true
+				for(var i=0;i<this.sel.length;i++){
+						this.sel[i]=true
+				}
+			}
+			//计算总价
+			var sum=0;
+			for(var a=0;a<this.sel.length;a++){
+				if(this.sel[a]==true){
+					sum+=this.products[a].price*this.num[a]
+				}
 			}
 			this.total_p=sum.toFixed(2)
 		},
-		//计算总价
+		// 计算总价
 		total_price(){
-			var sum=0
-			for(var i=0;i<document.querySelectorAll('#cart_pro :checked').length;i++){
-				var price=document.querySelectorAll('#cart_pro :checked')[i].parentElement.nextElementSibling.nextElementSibling.childNodes[2].firstChild.lastChild.innerHTML
-				var num=document.querySelectorAll('#cart_pro :checked')[i].parentElement.nextElementSibling.nextElementSibling.childNodes[2].lastChild.childNodes[1].value
-				sum=num*price+sum
+			var sum=0;
+			for(var i=0;i<this.sel.length;i++){
+				if(this.sel[i]==true){
+					sum+=this.products[i].price*this.num[i]
+				}
 			}
 			this.total_p=sum.toFixed(2)
 		},
 		// 减少数量
-		jian(e){
-			if(e.target.nextElementSibling.value==1){
-				return
+		jian(i){
+			if(this.num[i]==1){return};
+			this.num[i]=this.num[i]*1-1;
+			console.log(this.num);
+			if(this.guazai==false){
+				this.guazai=true
 			}else{
-				e.target.nextElementSibling.value=e.target.nextElementSibling.value*1-1	
-				// 计算总价
-				var sum=0
-				for(var i=0;i<document.querySelectorAll('#cart_pro :checked').length;i++){
-					var price=document.querySelectorAll('#cart_pro :checked')[i].parentElement.nextElementSibling.nextElementSibling.childNodes[2].firstChild.lastChild.innerHTML
-					var num=document.querySelectorAll('#cart_pro :checked')[i].parentElement.nextElementSibling.nextElementSibling.childNodes[2].lastChild.childNodes[1].value
-					sum=num*price+sum
-				}
-				this.total_p=sum.toFixed(2)
+				this.guazai=false
 			}
-		},
-		//增加数量
-		add(e){
-			e.target.previousElementSibling.value=e.target.previousElementSibling.value*1+1	
-			// 计算总价
-			var sum=0
-			for(var i=0;i<document.querySelectorAll('#cart_pro :checked').length;i++){
-				var price=document.querySelectorAll('#cart_pro :checked')[i].parentElement.nextElementSibling.nextElementSibling.childNodes[2].firstChild.lastChild.innerHTML
-				var num=document.querySelectorAll('#cart_pro :checked')[i].parentElement.nextElementSibling.nextElementSibling.childNodes[2].lastChild.childNodes[1].value
-				sum=num*price+sum
+
+			var sum=0;
+			for(var i=0;i<this.sel.length;i++){
+				if(this.sel[i]==true){
+					sum+=this.products[i].price*this.num[i]
+				}
 			}
 			this.total_p=sum.toFixed(2)
+		},
+		//增加数量
+		add(i){
+			this.num[i]=1+this.num[i]*1
+			console.log(this.num);
+			if(this.guazai==false){
+				this.guazai=true
+			}else{
+				this.guazai=false
+			}
+
+			var sum=0;
+			for(var i=0;i<this.sel.length;i++){
+				if(this.sel[i]==true){
+					sum+=this.products[i].price*this.num[i]
+				}
+			}
+			this.total_p=sum.toFixed(2)
+		},
+		//删除
+		del(){
+			for(var i=0;i<this.sel.length;i++){
+				if(this.sel[i]==true){
+					var id=this.products[i].id
+					var obj={id}
+					var url='del'
+					this.products.splice(i,1);
+					console.log(this.products);
+					
+					this.axios.get(url,{params:obj}).then(res=>{
+						console.log(res.data)
+						if(res.data==1){
+							console.log("删除成功");
+							for(var i=0;i<this.products.length;i++){
+								this.sel[i]=false;
+							}
+							console.log(this.sel);
+							
+							for(var i=0;i<this.products.length;i++){
+								this.num[i]=1;
+							}
+							// this.products.splice(i,1);
+							// console.log(this.products);
+							// console.log(i);
+							if(this.guazai==false){
+								this.guazai=true
+							}else{
+								this.guazai=false
+							}
+							
+						}else{
+							console.log("删除失败");
+							
+						}
+					}) 
+				}
+			}
+		},
+
+		//清除
+		del_all(){
+			for(var i=0;i<this.sel.length;i++){
+				var id=this.products[i].id
+				var obj={id}
+				var url='del'
+				this.axios.get(url,{params:obj}).then(res=>{
+					console.log(res.data)
+					if(res.data==1){
+						console.log("删除成功");
+						this.products=[]	
+					}else{
+						console.log("删除失败");
+							
+					}
+				})
+			}
 		}
+
 	},
 	created:function(){
+
+			// 从数据库获取数据
             var url="cart";
             this.axios.get(url).then(res=>{
                 console.log(res.data)
-                this.products=res.data
-            })
+				this.products=res.data
+				//生成一个数组
+				for(var i=0;i<this.products.length;i++){
+					this.sel[i]=false;
+				}
+				for(var i=0;i<this.products.length;i++){
+					this.num[i]=1;
+				}
+				
+			})
+		
    }
 
 
@@ -184,6 +312,7 @@ export default {
 		width:30%;
 	}
 	.g3 .f-r>span{
+		
 		display: inline-block;
 		border: 1px solid  black;
 		width: 20px;
@@ -202,6 +331,7 @@ export default {
 	}
 	.cart_img{
 		width:100%;
+		height:auto;
 	}
 	.p-center{
 		position:relative;
@@ -239,10 +369,11 @@ export default {
 	}
 	.g3{
 		margin-left:20px;
+		width:66%
+		
 	}
 	.g2{
 		width:23%;
-		height:auto;
 		box-shadow: 0 0 5px 5px rgba(200,200,200,0.1);
 	}
 	.g1{
