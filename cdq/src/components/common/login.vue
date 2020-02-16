@@ -2,8 +2,8 @@
     <div style="width:100%;height:100%;">
         <!-- 顶部 -->
         <div style="background:rgb(247, 59, 48)">
-            <a href=""><img style="width:25px;margin-left:25px;margin-top:10px;" src="../img/login/01.png" alt=""></a>
-            <div style="color:white;float:right;font:0.75rem;margin-top:15px;margin-right:25px;">注册</div>
+            <router-link to="/home"><img style="width:25px;margin-left:25px;margin-top:10px;" src="../img/login/01.png" alt=""></router-link>
+            <div style="color:white;float:right;font:0.75rem;margin-top:15px;margin-right:25px;" @click="jianche()">注册</div>
             <div style="text-align:center;"><img style="height:60px;margin:10px;" src="../img/login/02.png" alt=""></div>
         </div>
         <!-- 登录选择 -->
@@ -53,6 +53,15 @@ export default {
         }
     },
     methods:{
+        jianche(){
+            var url="jianche"
+             this.axios.get(url).then(res=>{
+                if(res.data==-1){
+                        // this.$router.push("/login")
+                        console.log(res.data)
+                    }
+            })
+        },
         login(){
             var uname=this.uname;
             var upwd=this.upwd;

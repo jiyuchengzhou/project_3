@@ -6,7 +6,7 @@
 			<!-- 头部 -->
 			<mt-header class="fixed" title="购物车">
 				<router-link to="/" slot="left">
-					<mt-button icon="back"></mt-button>
+					<mt-button icon="back" ></mt-button>
 				</router-link>
 				<mt-button slot="right" v-show="show==1" @click="qiehuan()">管理</mt-button>
 				<mt-button slot="right" v-show="show==2" @click="qiehuan()">完成</mt-button>
@@ -65,9 +65,9 @@
 				</div>
 				<div style="width:70%;" class="w-40 ">
 					<div class="f-r">
-						<span @click="del_all()" style="margin-right:10px;">清除</span>
+						<span @click="del_all(),total_price()" style="margin-right:10px;">清除</span>
 						<span style="text-align:center;border: 1px solid #ffb254;color: #ffb254;border-radius:15px;font-size:25px;font-weight:400;" class="total">&nbsp;&nbsp;&nbsp;移入收藏夹&nbsp;&nbsp;&nbsp;</span>
-						<span @click="del()" style="border: 1px solid #de2434;color: #de2434;border-radius:15px;font-size:25px;font-weight:400;padding-left:5px;padding-right:5px;" class="">删除</span>
+						<span @click="del(),total_price()" style="border: 1px solid #de2434;color: #de2434;border-radius:15px;font-size:25px;font-weight:400;padding-left:5px;padding-right:5px;" class="">删除</span>
 					</div>
 				</div>
 				

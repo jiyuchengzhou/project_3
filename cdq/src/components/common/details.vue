@@ -112,6 +112,10 @@ export default {
       }
     }
   },
+  methods:{
+      
+
+  },
   components: {
     swiper,
     swiperSlide

@@ -22,15 +22,15 @@
                 <img slot="icon"  :class="currentIndex[0].iSelect?'img_1':'img_none'" :src="currentIndex[0].iSelect?require('./img/footer/s1.png'):require('./img/footer/1.png')">
                 首页
         </mt-tab-item>
-        <mt-tab-item id="tab2" @click.native="changeState(1)">
+        <mt-tab-item id="tab2" @click.native="changeState(1),jianche()">
             <img slot="icon" :src="currentIndex[1].iSelect?require('./img/footer/s2.png'):require('./img/footer/2.png')">
             产品分类
         </mt-tab-item>
-        <mt-tab-item id="tab3" @click.native="changeState(2)">
+        <mt-tab-item id="tab3" @click.native="changeState(2),jianche()">
             <img slot="icon" :src="currentIndex[2].iSelect?require('./img/footer/s3.png'):require('./img/footer/3.png')">
             购物车
         </mt-tab-item>
-        <mt-tab-item id="tab4" @click.native="changeState(3)">
+        <mt-tab-item id="tab4" @click.native="changeState(3),jianche()">
             <img slot="icon" :src="currentIndex[3].iSelect?require('./img/footer/s4.png'):require('./img/footer/4.png')">
             我的
         </mt-tab-item>
@@ -72,6 +72,15 @@ export default {
         }
     },
     methods:{
+        jianche(){
+            var url="jianche"
+             this.axios.get(url).then(res=>{
+                if(res.data==-1){
+                        this.$router.push("/login")
+                        console.log(res.data)
+                    }
+            })
+        },
        changeState(i){
             console.log(this.currentIndex[i].iSelect)
             for(var a=0; a<this.currentIndex.length; a++){

@@ -126,7 +126,7 @@
                 </div>
             </div>
         <!-- 退出登录按钮 -->
-        <mt-button class="btn">退出登录</mt-button>
+        <mt-button @click="exit()" class="btn">退出登录</mt-button>
 
         </div>
         <!-- 背景铺满剩下的地方 -->
@@ -137,6 +137,16 @@
 </template>
 <script>
 export default {
+    methods:{
+        exit(){
+            var url="exit"
+             this.axios.get(url).then(res=>{
+                 if(res.data==1){
+                     this.$router.push("/login")
+                 }
+            })
+        }
+    }
     
 }
 </script>

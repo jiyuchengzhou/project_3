@@ -16,13 +16,15 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.use(VueAwesomeSwiper)
 import 'swiper/css/swiper.css'
 // 配置访问服务器基础路径
-axios.defaults.baseURL = 'http://127.0.0.1:4000/';
+axios.defaults.baseURL = 'http://localhost:4000/';
+// 配置session
+axios.defaults.withCredentials=true
 //3.注册MintUI对象
 Vue.use(MintUI)
 //注册axios对象
 Vue.prototype.axios=axios
-
-Vue.config.productionTip = false
+// 设置开发环境
+// Vue.config.productionTip = false
 
 new Vue({
   router,

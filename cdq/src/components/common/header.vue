@@ -155,7 +155,7 @@ export default {
    },
    methods:{
         addCart(i){
-            
+
             var id=i
             var url="details";
             var obj={id}
@@ -165,7 +165,10 @@ export default {
                 console.log(obj2)
                 var url='addcart'
                 this.axios.get(url,{params:obj2}).then(res=>{
-                    console.log(res)
+                    if(res.data==-1){
+                        this.$router.push("/login")
+                    }
+                    console.log(res.data)
                 }) 
             })   
         }
