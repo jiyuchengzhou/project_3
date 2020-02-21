@@ -3,13 +3,13 @@
     <!-- 上面搜索框 -->
     <div class="top">
       <!-- 分类按键 -->
-      <div class="caidan">
+      <div class="caidan" @click="goShou">
         <img src="../img/fenlei/xiaoyu.png" style="width:25px;height:25px;" alt />
         <br />
       </div>
       <!-- 搜索框 -->
       <div style="width:100% ;padding-right:20px;padding-left:6px;">
-        <input id="shousuo" type="text" v-model="key" placeholder="请输入商品名称" />
+        <input id="shousuo" type="text" v-model.trim="key" placeholder="请输入商品名称" />
       </div>
       <div class="xioaxi">
         <div style="color:black" @click="search()">搜索</div>
@@ -42,7 +42,7 @@
           </router-link>
           <div style=" margin-top: 5px;line-height:25px;margin-bottom:10px;padding:5px;">
             <span>¥{{item.price}}</span>
-            <div class="gwc" style>
+            <div class="gwc" @click="add_cart(item.id)">
               <img style="margin-top:3px;" src="../img/search/gwc.png" alt />
             </div>
           </div>
@@ -61,7 +61,41 @@ export default {
       xian: 1
     };
   },
+  // directives: {
+  //   focus: {
+  //     inserted: function(el, { value }) {
+  //       if (value) {
+  //         el.focus();
+  //         console.log(1);
+  //       }
+  //     }
+  //   }
+  // },
   methods: {
+    add_cart(i) {
+      var id = i;
+      var url = "details";
+      var obj = { id };
+      this.axios.get(url, { params: obj }).then(res => {
+        console.log(res.data);
+        var obj2 = res.data[0];
+        console.log(obj2);
+        var url = "addcart";
+        this.axios.get(url, { params: obj2 }).then(res => {
+          if (res.data == -1) {
+            this.$router.push("/login");
+          } else if (res.data == 1) {
+            this.$store.commit("add");
+          }
+          console.log(res.data);
+        });
+      });
+    },
+    // 跳转首页
+    goShou() {
+      this.$emit("goshou", "123");
+    },
+    // 模糊查询
     search() {
       console.log(this.key);
       var key = this.key;

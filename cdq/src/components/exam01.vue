@@ -1,39 +1,46 @@
 <template>
-    <div>
-        <div>{{ss.btn[1]}}</div>
-        <div @click="add()">加</div>
-        <div v-if="key"></div>
-    </div>
+  <div>
+    <div @click="ddo">123</div>
+    <mt-checklist v-model="value" :options="options"></mt-checklist>
+    <!-- <mt-radio v-model="value" options="0"></mt-radio> -->
+  </div>
 </template>
 <script>
 export default {
-    data(){
-　　return {
-　　　ss:{btn:[2,3,4]},
-        key:false,
-　　}
-},
-watch:{
-　　
-},
-methods:{　　
-　　add(){
-    this.ss.btn[1]++;
-    if(this.key==false){
-        this.key=true;
-    }else{
-        this.key=false;
+  data() {
+    return {
+      //存放所选选项
+      value: [],
+      //checklist设置
+      options: [
+        {
+          label: "选项A",
+          value: "A"
+        },
+        {
+          label: "选项B",
+          value: "B"
+        },
+        {
+          label: "选项C",
+          value: "C"
+        },
+        {
+          label: "选项D",
+          value: "D"
+        }
+      ]
+    };
+  },
+  watch: {},
+  methods: {
+    ddo() {
+      this.value.push("D");
+      console.log(this.value);
     }
-    
-    
-}
-},
-computed:{
-    
-}
-
-}
+  },
+  computed: {}
+};
 </script>
 <style scoped>
-    
 </style>

@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    cartNum: 0
+    cartNum: 0,
   },
   mutations: {
     huo(state, n) {
@@ -13,6 +13,9 @@ export default new Vuex.Store({
     },
     add(state) {
       state.cartNum = state.cartNum + 1;
+    },
+    del(state, n) {
+      state.cartNum = state.cartNum - n;
     }
   },
   actions: {

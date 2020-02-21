@@ -17,7 +17,13 @@
       <div id="cart_pro">
         <div class="product" v-for="(item,i) in products" :key="i">
           <div class="g1">
-            <input type="checkbox" v-model="sel[i]" class="p-center" @click="dan(i)" />
+            <!-- 选择框 -->
+            <!-- <input type="checkbox" v-model="sel[i]" class="p-center" @click="dan(i)" /> -->
+            <img
+              :src="sel[i]?require('../img/cart/gou.png'):require('../img/cart/fou.png')"
+              class="p-center"
+              @click="dan(i)"
+            />
           </div>
           <div class="g2">
             <router-link
@@ -58,8 +64,13 @@
         style="display:flex;height:50px;line-height:50px;background:white;position:fixed;bottom:55px;width:100%;z-index=3;"
       >
         <div class="w-30">
-          <input class="ml-17" type="checkbox" v-model="isAllChecked" @click="chooseAll()" />
-          <span>全选</span>
+          <!-- <input class="ml-17" type="checkbox" v-model="isAllChecked" @click="chooseAll()" /> -->
+          <img
+            :src="isAllChecked?require('../img/cart/gou.png'):require('../img/cart/fou.png')"
+            class="ml-17"
+            @click="chooseAll()"
+          />
+          <span style="margin-left:50px;" @click="chooseAll()">全选</span>
         </div>
         <div class="w-40">
           <div class="f-r">
@@ -76,8 +87,12 @@
         style="display:flex;height:50px;line-height:50px;background:white;position:fixed;bottom:55px;width:100%;z-index=3;"
       >
         <div class="w-30">
-          <input class="ml-17" type="checkbox" v-model="isAllChecked" @click="chooseAll()" />
-          <span>全选</span>
+          <img
+            :src="isAllChecked?require('../img/cart/gou.png'):require('../img/cart/fou.png')"
+            class="ml-17"
+            @click="chooseAll()"
+          />
+          <span style="margin-left:50px;" @click="chooseAll();total_price()">全选</span>
         </div>
         <div style="width:70%;" class="w-40">
           <div class="f-r">
@@ -101,11 +116,13 @@
 </template>
 <script>
 export default {
+  props: ["cart_products", "cart_num", "cart_sel"],
   data() {
     return {
       guazai: false,
-      num: [],
-      products: [],
+      // 商品选择数量
+      num: this.cart_num,
+      products: this.cart_products,
       // products:[
       // 	{src:'img/cart/1.png',intr:'特价促销  英国K魔方 幼犬猫专用羊奶粉350g',guige:'350g',price:'88.00'},
 
@@ -113,7 +130,7 @@ export default {
       isAllChecked: false,
       total_p: "0.00",
       show: 1,
-      sel: []
+      sel: this.cart_sel
     };
   },
 
@@ -130,19 +147,19 @@ export default {
         this.sel[i] = true;
       }
       // 判断多选
-      if (sum == this.sel.length) {
+      var sel_sum = 0;
+      for (var b = 0; b < this.sel.length; b++) {
+        if (this.sel[b] == true) {
+          ++sel_sum;
+        }
+      }
+      if (sel_sum == this.sel.length) {
         this.isAllChecked = true;
       } else {
         this.isAllChecked = false;
       }
       //计算总价
-      var sum = 0;
-      for (var a = 0; a < this.sel.length; a++) {
-        if (this.sel[a] == true) {
-          sum += this.products[i].price * this.num[i];
-        }
-      }
-      this.total_p = sum.toFixed(2);
+      this.total_price();
     },
     // 切换管理和完成页面
     qiehuan() {
@@ -174,20 +191,14 @@ export default {
         }
       }
       //计算总价
-      var sum = 0;
-      for (var a = 0; a < this.sel.length; a++) {
-        if (this.sel[a] == true) {
-          sum += this.products[a].price * this.num[a];
-        }
-      }
-      this.total_p = sum.toFixed(2);
+      this.total_price();
     },
     // 计算总价
     total_price() {
       var sum = 0;
-      for (var i = 0; i < this.sel.length; i++) {
-        if (this.sel[i] == true) {
-          sum += this.products[i].price * this.num[i];
+      for (var c = 0; c < this.sel.length; c++) {
+        if (this.sel[c] == true) {
+          sum += this.products[c].price * this.num[c];
         }
       }
       this.total_p = sum.toFixed(2);
@@ -204,14 +215,8 @@ export default {
       } else {
         this.guazai = false;
       }
-
-      var sum = 0;
-      for (var i = 0; i < this.sel.length; i++) {
-        if (this.sel[i] == true) {
-          sum += this.products[i].price * this.num[i];
-        }
-      }
-      this.total_p = sum.toFixed(2);
+      //计算总价
+      this.total_price();
     },
     //增加数量
     add(i) {
@@ -222,14 +227,12 @@ export default {
       } else {
         this.guazai = false;
       }
-
-      var sum = 0;
-      for (var i = 0; i < this.sel.length; i++) {
-        if (this.sel[i] == true) {
-          sum += this.products[i].price * this.num[i];
-        }
-      }
-      this.total_p = sum.toFixed(2);
+      console.log(this.num);
+      console.log(this.sel);
+      console.log(this.products);
+      //计算总价
+      this.total_price();
+      console.log(this.products);
     },
     //删除
     del() {
@@ -238,29 +241,26 @@ export default {
           var id = this.products[i].id;
           var obj = { id };
           var url = "del";
+          console.log("删除成功");
           this.products.splice(i, 1);
-          console.log(this.products);
-
+          this.num.splice(i, 1);
+          this.sel.splice(i, 1);
+          this.$store.commit("del", 1);
+          --i;
           this.axios.get(url, { params: obj }).then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data == 1) {
-              console.log("删除成功");
-              for (var i = 0; i < this.products.length; i++) {
-                this.sel[i] = false;
+              console.log(this.products);
+              if (this.products.length == 0) {
+                this.products = [];
               }
-              console.log(this.sel);
-
-              for (var i = 0; i < this.products.length; i++) {
-                this.num[i] = 1;
-              }
-              // this.products.splice(i,1);
+              // console.log(this);
               // console.log(this.products);
-              // console.log(i);
-              if (this.guazai == false) {
-                this.guazai = true;
-              } else {
-                this.guazai = false;
-              }
+              // if (this.guazai == false) {
+              //   this.guazai = true;
+              // } else {
+              //   this.guazai = false;
+              // }
             } else {
               console.log("删除失败");
             }
@@ -279,12 +279,25 @@ export default {
           console.log(res.data);
           if (res.data == 1) {
             console.log("删除成功");
+            this.total_p = "0.00";
             this.products = [];
+            this.$store.commit("del", 1);
           } else {
             console.log("删除失败");
           }
         });
       }
+    }
+  },
+  watch: {
+    cart_sel() {
+      this.sel = this.cart_sel;
+    },
+    cart_num() {
+      this.num = this.cart_num;
+    },
+    cart_products() {
+      this.products = this.cart_products;
     }
   },
   created: function() {
@@ -294,19 +307,18 @@ export default {
       console.log(res.data);
       this.products = res.data;
       // vuex获取数据;
-      // console.log(this.products.length);
       if (this.products == 0) {
         this.$store.commit("huo", 0);
       } else {
         this.$store.commit("huo", this.products.length);
       }
       //生成一个数组
-      for (var i = 0; i < this.products.length; i++) {
-        this.sel[i] = false;
-      }
-      for (var i = 0; i < this.products.length; i++) {
-        this.num[i] = 1;
-      }
+      //   for (var i = 0; i < this.products.length; i++) {
+      //     this.sel[i] = false;
+      //   }
+      //   for (var i = 0; i < this.products.length; i++) {
+      //     this.num[i] = 1;
+      //   }
     });
   }
 };
@@ -317,7 +329,9 @@ export default {
   color: white;
 }
 .ml-17 {
-  margin-left: 17px;
+  position: absolute;
+  left: 17px;
+  top: 12px;
 }
 .total {
   color: #f56456;

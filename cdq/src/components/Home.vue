@@ -1,6 +1,6 @@
 <template>
   <div>
-    <search v-show="currentIndex[4].iSelect==true"></search>
+    <search v-show="currentIndex[4].iSelect==true" @goshou="go_shou"></search>
     <!-- 切换面板 -->
     <mt-tab-container v-model="active">
       <mt-tab-container-item id="tab1">
@@ -10,7 +10,13 @@
         <fenlei @fen="getFen" @toshou="to_shou"></fenlei>
       </mt-tab-container-item>
       <mt-tab-container-item id="tab3">
-        <cart @goshou="go_shou"></cart>
+        <!-- 组件子传父 -->
+        <cart
+          @goshou="go_shou"
+          :cart_products="cart_products"
+          :cart_num="cart_num"
+          :cart_sel="cart_sel"
+        ></cart>
       </mt-tab-container-item>
       <mt-tab-container-item id="tab4">
         <wode></wode>
@@ -33,7 +39,11 @@
         />
         产品分类
       </mt-tab-item>
-      <mt-tab-item id="tab3" @click.native="changeState(2),jianche()" style="position:relative;">
+      <mt-tab-item
+        id="tab3"
+        @click.native="changeState(2),jianche(),jiazai()"
+        style="position:relative;"
+      >
         <div
           style="border:1px solid white;border-radius:6px;background:rgb(245, 100, 86);font-size:7px;height:12px;width:12px;color:white;font-weight:500;position:absolute;top:5px;right:50%;transform:translate(15px,0)"
         >{{this.$store.state.cartNum}}</div>
@@ -74,7 +84,12 @@ export default {
   },
   data() {
     return {
-      msgFormSon: "",
+      //购物车选中信息
+      cart_sel: [],
+      // 购物车数量信息
+      cart_num: [],
+      //购物车商品信息
+      cart_products: [],
       active: "tab1", //面板id
       //创建数组保存tabbar
       //图片状态
@@ -88,6 +103,32 @@ export default {
     };
   },
   methods: {
+    // 加载购物车数据
+    jiazai() {
+      // if (this.active == "tab3") {
+      //   return;
+      // } else {
+      // 从数据库获取数据
+      var url = "cart";
+      this.axios.get(url).then(res => {
+        console.log(res.data);
+        this.cart_products = res.data;
+        // vuex获取数据;
+        if (this.cart_products == 0) {
+          this.$store.commit("huo", 0);
+        } else {
+          this.$store.commit("huo", this.cart_products.length);
+        }
+        //生成一个数组
+        for (var i = 0; i < this.cart_products.length; i++) {
+          this.cart_sel[i] = false;
+        }
+        for (var i = 0; i < this.cart_products.length; i++) {
+          this.cart_num[i] = 1;
+        }
+      });
+      // }
+    },
     //购物车跳转到首页
     go_shou() {
       this.active = "tab1";
