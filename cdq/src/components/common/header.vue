@@ -10,7 +10,7 @@
         <span>分类</span>
       </div>
       <!-- 搜索框 -->
-      <div style="width:100% ;padding-right:20px;padding-left:6px;" @click="sendMsg">
+      <div class="sou" @click="sendMsg">
         <img id="fdj" src="../img/fdj.png" alt />
         <input id="shousuo" type="text" placeholder="搜索商品/店铺" />
       </div>
@@ -29,7 +29,7 @@
       </div>-->
       <div>
         <a href>
-          <img style="width:100%;height:auto;" src="../img/souye/01.png" alt />
+          <img class="img_s" style src="../img/souye/01.png" alt />
         </a>
       </div>
       <!-- 三张图片组合 -->
@@ -58,12 +58,8 @@
         </a>
       </div>
       <!-- 横向商品展示区 -->
-      <div style="width:100%;height:auto;display:flex;flex-wrap:nowrap;overflow:auto;">
-        <div
-          style="width:27%;background:white;padding:5px;flex-shrink:0"
-          v-for="(item,i) in products"
-          :key="i"
-        >
+      <div class="heng">
+        <div class="heng_1" v-for="(item,i) in products" :key="i">
           <router-link :to="{path:'/details',query:{ id:item.id }}" style="text-decoration:none">
             <img style="width:100%;height:auto;" :src="require('../'+item.src)" alt />
             <div style="color:black;height:38px;overflow:hidden;">{{item.intr}}</div>
@@ -72,10 +68,7 @@
           <div style="margin:10px 0;">
             <span style="color:#f56456">¥</span>
             <span style="color:#f56456">{{item.price}}</span>
-            <span
-              @click="addCart(item.id)"
-              style="float:right;border:1px solid black;width:20px;height:20px;border-radius:50%;text-align:center;"
-            >+</span>
+            <span class="heng_2" @click="addCart(item.id)">+</span>
           </div>
         </div>
       </div>
@@ -84,121 +77,67 @@
       <!-- 爆品团购区 -->
       <div style="display:flex;flex-wrap:wrap;">
         <div style="width:100%;">
-          <img style="width:100%;height:auto;" src="../img/souye/07.png" alt />
+          <img class="img_s" src="../img/souye/07.png" alt />
         </div>
         <div style="width:100%;">
-          <img style="width:50%;height:auto;" src="../img/souye/08.webp" alt />
-          <img style="width:50%;height:auto;" src="../img/souye/09.webp" alt />
-          <img style="width:50%;height:auto;" src="../img/souye/10.webp" alt />
-          <img style="width:50%;height:auto;" src="../img/souye/11.webp" alt />
-          <img style="width:50%;height:auto;" src="../img/souye/12.webp" alt />
-          <img style="width:50%;height:auto;" src="../img/souye/13.webp" alt />
+          <img class="img_w50" src="../img/souye/08.webp" alt />
+          <img class="img_w50" src="../img/souye/09.webp" alt />
+          <img class="img_w50" src="../img/souye/10.webp" alt />
+          <img class="img_w50" src="../img/souye/11.webp" alt />
+          <img class="img_w50" src="../img/souye/12.webp" alt />
+          <img class="img_w50" src="../img/souye/13.webp" alt />
         </div>
       </div>
       <!-- 犬猫医疗保健品 -->
       <div style="width:100%">
-        <img style="width:100%;height:auto;" src="../img/souye/14.png" alt />
-        <img style="width:100%;height:auto;" src="../img/souye/15.png" alt />
+        <img class="img_s" src="../img/souye/14.png" alt />
+        <img class="img_s" src="../img/souye/15.png" alt />
       </div>
       <div style="width:100%;">
-        <img style="width:50%;height:auto;" src="../img/souye/17.webp" alt />
-        <img style="width:50%;height:auto;" src="../img/souye/17.webp" alt />
-        <img style="width:50%;height:auto;" src="../img/souye/18.webp" alt />
-        <img style="width:50%;height:auto;" src="../img/souye/19.webp" alt />
-        <img style="width:50%;height:auto;" src="../img/souye/20.webp" alt />
-        <img style="width:50%;height:auto;" src="../img/souye/21.webp" alt />
+        <img class="img_w50" src="../img/souye/17.webp" alt />
+        <img class="img_w50" src="../img/souye/17.webp" alt />
+        <img class="img_w50" src="../img/souye/18.webp" alt />
+        <img class="img_w50" src="../img/souye/19.webp" alt />
+        <img class="img_w50" src="../img/souye/20.webp" alt />
+        <img class="img_w50" src="../img/souye/21.webp" alt />
       </div>
       <!-- 犬猫美味零食 -->
       <div style="width:100%">
-        <img style="width:100%;height:auto" src="../img/souye/22.png" alt />
+        <img class="img_s" src="../img/souye/22.png" alt />
       </div>
       <div style="width:100%;">
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/23.webp"
-          alt
-        />
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/24.webp"
-          alt
-        />
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/25.webp"
-          alt
-        />
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/26.webp"
-          alt
-        />
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/27.webp"
-          alt
-        />
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/28.webp"
-          alt
-        />
+        <img class="img_33" src="../img/souye/23.webp" alt />
+        <img class="img_33" src="../img/souye/24.webp" alt />
+        <img class="img_33" src="../img/souye/25.webp" alt />
+        <img class="img_33" src="../img/souye/26.webp" alt />
+        <img class="img_33" src="../img/souye/27.webp" alt />
+        <img class="img_33" src="../img/souye/28.webp" alt />
       </div>
       <!-- 犬猫日常用品 -->
       <div style="width:100%">
-        <img style="width:100%;height:auto" src="../img/souye/29.png" alt />
+        <img class="img_s" src="../img/souye/29.png" alt />
       </div>
       <div style="width:100%;">
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/30.webp"
-          alt
-        />
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/31.webp"
-          alt
-        />
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/32.webp"
-          alt
-        />
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/33.webp"
-          alt
-        />
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/34.webp"
-          alt
-        />
-        <img
-          style="width:33.33333333%;height:auto;justify-content:center;"
-          src="../img/souye/35.webp"
-          alt
-        />
+        <img class="img_33" src="../img/souye/30.webp" alt />
+        <img class="img_33" src="../img/souye/31.webp" alt />
+        <img class="img_33" src="../img/souye/32.webp" alt />
+        <img class="img_33" src="../img/souye/33.webp" alt />
+        <img class="img_33" src="../img/souye/34.webp" alt />
+        <img class="img_33" src="../img/souye/35.webp" alt />
       </div>
       <!-- 双拼粮犬猫更爱吃 -->
-      <h2
-        style="width:100%;font-size: 16px;height: 2rem;line-height: 2rem;font-weight: bold;color: #353535;text-align: center;position: relative;"
-      >
+      <h2 class="xifen">
         <span>双拼粮犬猫更爱吃</span>
       </h2>
       <div style="width:100%;">
-        <img style="width:100%;height:auto" src="../img/souye/36.jpg" alt />
+        <img class="img_s" src="../img/souye/36.jpg" alt />
       </div>
       <div style="width:100%;">
-        <img style="width:100%;height:auto" src="../img/souye/37.jpg" alt />
+        <img class="img_s" src="../img/souye/37.jpg" alt />
       </div>
       <!-- 横向商品展示区 -->
-      <div style="width:100%;height:auto;display:flex;flex-wrap:nowrap;overflow:auto;">
-        <div
-          style="width:27%;background:white;padding:5px;flex-shrink:0"
-          v-for="(item,i) in products"
-          :key="i"
-        >
+      <div class="heng">
+        <div class="heng_1" v-for="(item,i) in products" :key="i">
           <router-link :to="{path:'/details',query:{ id:item.id }}" style="text-decoration:none">
             <img style="width:100%;height:auto;" :src="item.src" alt />
             <div style="color:black;">{{item.intr}}</div>
@@ -207,9 +146,7 @@
           <div>
             <span style="color:#f56456">¥</span>
             <span style="color:#f56456">{{item.price}}</span>
-            <span
-              style="float:right;border:1px solid black;width:20px;height:20px;border-radius:50%;text-align:center;"
-            >+</span>
+            <span class="heng_2">+</span>
           </div>
         </div>
       </div>
@@ -269,6 +206,55 @@ export default {
 };
 </script>
 <style scoped>
+.img_w50 {
+  width: 50%;
+  height: auto;
+}
+.xifen {
+  width: 100%;
+  font-size: 16px;
+  height: 2rem;
+  line-height: 2rem;
+  font-weight: bold;
+  color: #353535;
+  text-align: center;
+  position: relative;
+}
+.img_33 {
+  width: 33.33333333%;
+  height: auto;
+  justify-content: center;
+}
+.heng_2 {
+  float: right;
+  border: 1px solid black;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+}
+.heng_1 {
+  width: 27%;
+  background: white;
+  padding: 5px;
+  flex-shrink: 0;
+}
+.heng {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+}
+.img_s {
+  width: 100%;
+  height: auto;
+}
+.sou {
+  width: 100%;
+  padding-right: 20px;
+  padding-left: 6px;
+}
 .cheng {
   height: 65px;
 }

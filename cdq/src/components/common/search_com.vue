@@ -8,7 +8,7 @@
         <br />
       </div>
       <!-- 搜索框 -->
-      <div style="width:100% ;padding-right:20px;padding-left:6px;">
+      <div class="sou_in">
         <input id="shousuo" type="text" v-model.trim="key" placeholder="请输入商品名称" />
       </div>
       <div class="xioaxi">
@@ -23,24 +23,17 @@
       <div>暂无相关记录</div>
     </div>
     <!-- 商品列表 -->
-    <div class="list" style="display:flex;background:rgb(247, 248, 249);flex-wrap:wrap;">
-      <div
-        v-for="(item,i) in products"
-        :key="i"
-        :class="{'odd_s':(i+1)%2!=0}"
-        style="width:47%;box-sizing:border-box;background:white;margin-top:10px;"
-      >
+    <div class="list">
+      <div class="list_1" v-for="(item,i) in products" :key="i" :class="{'odd_s':(i+1)%2!=0}">
         <div class="pro" style="width:100%;">
           <router-link
             :to="{path:'/details',query:{ id:item.id }}"
             style="text-decoration:none;color:black;"
           >
             <img style="width:100%;" :src="require('../'+item.src)" alt />
-            <div
-              style="margin-top:5px;padding:5px;padding-top:1px;overflow:hidden;height:33px;"
-            >{{item.intr}}</div>
+            <div class="list_2">{{item.intr}}</div>
           </router-link>
-          <div style=" margin-top: 5px;line-height:25px;margin-bottom:10px;padding:5px;">
+          <div class="list_3">
             <span>¥{{item.price}}</span>
             <div class="gwc" @click="add_cart(item.id)">
               <img style="margin-top:3px;" src="../img/search/gwc.png" alt />
@@ -116,6 +109,35 @@ export default {
 };
 </script>
 <style scoped>
+.sou_in {
+  width: 100%;
+  padding-right: 20px;
+  padding-left: 6px;
+}
+.list_3 {
+  margin-top: 5px;
+  line-height: 25px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+.list_2 {
+  margin-top: 5px;
+  padding: 5px;
+  padding-top: 1px;
+  overflow: hidden;
+  height: 33px;
+}
+.list_1 {
+  width: 47%;
+  box-sizing: border-box;
+  background: white;
+  margin-top: 10px;
+}
+.list {
+  display: flex;
+  background: rgb(247, 248, 249);
+  flex-wrap: wrap;
+}
 .gwc {
   border: 1px solid rgb(245, 100, 86);
   background: rgb(245, 100, 86);

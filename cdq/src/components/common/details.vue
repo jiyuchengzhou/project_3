@@ -1,15 +1,8 @@
 <template>
   <div>
     <div class="bg_all">
-      <div
-        style="background: rgba(41,47,54,.5);width: 30px;height: 30px;text-align: center;line-height: 30px;border-radius:15px;position:fixed;left:20px;top:20px;z-index:10"
-        @click="back"
-      >
-        <img
-          style="width:25px;margin-top:3px;margin-right:2px;"
-          src="../img/details/xiaoyu.png"
-          alt
-        />
+      <div class="back_s" @click="back">
+        <img class="img_back" src="../img/details/xiaoyu.png" alt />
       </div>
       <!-- 轮播图区域 -->
       <div class="_swiper">
@@ -112,22 +105,12 @@
       </div>
       <!-- 加入购物车时弹出的方框 -->
 
-      <div
-        :class="{'addCart':cart}"
-        style="height:315px;width:100%;border-top-left-radius:15px;
-border-top-right-radius:15px;background:white;position:fixed;bottom:-350px;z-index:5"
-      >
+      <div :class="{'addCart':cart}" class="_cart">
         <!-- 叉 -->
-        <div
-          :class="{'cha':cart}"
-          style="background:white;padding:10px;position:absolute;border-top-left-radius:10px;border-top-right-radius:10px;"
-          @click="cha"
-        >
+        <div :class="{'cha':cart}" class="_cha" @click="cha">
           <img style="width:15px;height:15px;" src="../img/details/cha.png" alt />
         </div>
-        <div
-          style="width:82px;margin-left:15px;height:82px;position:absolute;top:-15px;box-shadow: 0px 0px 10px white;border:5px solid white;border-radius:5px;"
-        >
+        <div class="cart_img">
           <img
             :src="require('../'+products.src)"
             style="width:82px;height:82px;margin-bottom:30px;"
@@ -138,16 +121,13 @@ border-top-right-radius:15px;background:white;position:fixed;bottom:-350px;z-ind
         <div style="margin-top:180px;">
           <span style="margin-left:30px;">购买数量</span>
           <div style="display:flex;float:right;">
-            <button @click="jian" style="background:rgb(247, 247, 247);width:30px;border:0">-</button>
+            <button @click="jian" class="jian_btn">-</button>
             <input type="text" v-model="num" style="width:30px;text-align:center;" />
-            <button
-              @click="add"
-              style="background:rgb(247, 247, 247);margin-right:30px;width:30px;border:0"
-            >+</button>
+            <button @click="add" class="add_btn">+</button>
           </div>
         </div>
         <!-- 确定按钮 -->
-        <div style="text-align:center;bottom:0;width:100%;margin-top:30px;">
+        <div class="que_btn">
           <mt-button style="width:90%;border-radius:20px;" @click="inCart">确定</mt-button>
         </div>
       </div>
@@ -233,6 +213,67 @@ export default {
 };
 </script>
 <style scoped>
+.que_btn {
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  margin-top: 30px;
+}
+.jian_btn {
+  background: rgb(247, 247, 247);
+  width: 30px;
+  border: 0;
+}
+.add_btn {
+  background: rgb(247, 247, 247);
+  margin-right: 30px;
+  width: 30px;
+  border: 0;
+}
+.cart_img {
+  width: 82px;
+  margin-left: 15px;
+  height: 82px;
+  position: absolute;
+  top: -15px;
+  box-shadow: 0px 0px 10px white;
+  border: 5px solid white;
+  border-radius: 5px;
+}
+._cha {
+  background: white;
+  padding: 10px;
+  position: absolute;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+._cart {
+  height: 315px;
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background: white;
+  position: fixed;
+  bottom: -350px;
+  z-index: 5;
+}
+.img_back {
+  width: 25px;
+  margin-top: 3px;
+  margin-right: 2px;
+}
+.back_s {
+  background: rgba(41, 47, 54, 0.5);
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 15px;
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  z-index: 10;
+}
 .cha {
   animation: chazi 0.2s 0.5s 1;
   animation-fill-mode: forwards;

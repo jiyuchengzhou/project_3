@@ -59,10 +59,7 @@
         </div>
       </div>
       <!-- 全选那排 -->
-      <div
-        v-show="show==1"
-        style="display:flex;height:50px;line-height:50px;background:white;position:fixed;bottom:55px;width:100%;z-index=3;"
-      >
+      <div class="_quan" v-show="show==1" style>
         <div class="w-30">
           <!-- <input class="ml-17" type="checkbox" v-model="isAllChecked" @click="chooseAll()" /> -->
           <img
@@ -82,10 +79,7 @@
       </div>
 
       <!-- 全选管理那排 -->
-      <div
-        v-show="show==2"
-        style="display:flex;height:50px;line-height:50px;background:white;position:fixed;bottom:55px;width:100%;z-index=3;"
-      >
+      <div v-show="show==2" class="_quan">
         <div class="w-30">
           <img
             :src="isAllChecked?require('../img/cart/gou.png'):require('../img/cart/fou.png')"
@@ -97,15 +91,8 @@
         <div style="width:70%;" class="w-40">
           <div class="f-r">
             <span @click="del_all(),total_price()" style="margin-right:10px; font-size:14px;">清除</span>
-            <span
-              style="text-align:center;border: 1px solid #ffb254;color: #ffb254;border-radius:17px;font-size:15px;font-weight:400;"
-              class="total"
-            >&nbsp;&nbsp;&nbsp;移入收藏夹&nbsp;&nbsp;&nbsp;</span>
-            <span
-              @click="del(),total_price()"
-              style="border: 1px solid #de2434;color: #de2434;border-radius:15px;font-size:17px;font-weight:400;padding-left:5px;padding-right:5px;"
-              class
-            >删除</span>
+            <span class="shoucang">&nbsp;&nbsp;&nbsp;移入收藏夹&nbsp;&nbsp;&nbsp;</span>
+            <span @click="del(),total_price()" class="_del">删除</span>
           </div>
         </div>
       </div>
@@ -324,6 +311,36 @@ export default {
 };
 </script>
 <style scoped>
+._del {
+  text-align: center;
+  border: 1px solid #de2434;
+  color: #de2434;
+  border-radius: 17px;
+  font-size: 17px;
+  font-weight: 400;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.shoucang {
+  text-align: center;
+  border: 1px solid #ffb254;
+  color: #ffb254;
+  font-weight: 700;
+  margin-right: 10px;
+  border-radius: 17px;
+  font-size: 17px;
+  font-weight: 400;
+}
+._quan {
+  display: flex;
+  height: 50px;
+  line-height: 50px;
+  background: white;
+  position: fixed;
+  bottom: 55px;
+  width: 100%;
+  z-index: 3;
+}
 .mint-button--default {
   background: #f56456;
   color: white;

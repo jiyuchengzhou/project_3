@@ -3,23 +3,23 @@
     <!-- 顶部 -->
     <div style="background:rgb(247, 59, 48)">
       <router-link to="/home">
-        <img style="width:25px;margin-left:25px;margin-top:10px;" src="../img/login/01.png" alt />
+        <img class="home" src="../img/login/01.png" alt />
       </router-link>
       <router-link to="/register">
-        <div style="color:white;float:right;font:0.75rem;margin-top:15px;margin-right:25px;">注册</div>
+        <div class="t_reg">注册</div>
       </router-link>
       <div style="text-align:center;">
         <img style="height:60px;margin:10px;" src="../img/login/02.png" alt />
       </div>
     </div>
     <!-- 登录选择 -->
-    <div style="display:flex;background:rgb(248, 248, 248);padding:15px;">
-      <div style="text-align:center;width:50%;">普通登录</div>
-      <div style="text-align:center;width:50%;">动态密码登录</div>
+    <div class="sel">
+      <div class="_sel">普通登录</div>
+      <div class="_sel">动态密码登录</div>
     </div>
     <div style="background:rgb(248, 248, 248);">
       <!-- 登录中两个输入框 -->
-      <div style="display:flex;padding:15px;border:1px solid rgb(248, 248, 248);background:white;">
+      <div class="_input">
         <div style="width:30%;">用户名:</div>
         <div>
           <input
@@ -30,7 +30,9 @@
           />
         </div>
       </div>
-      <div style="display:flex;padding:15px;border:1px solid rgb(248, 248, 248);background:white;">
+      <!-- 登录提示 -->
+      <div class="_tishi" style v-show="show">{{tishi}}</div>
+      <div class="_input">
         <div style="width:30%;">密码:</div>
         <div>
           <input
@@ -42,7 +44,7 @@
         </div>
       </div>
       <!-- 登录前选项 -->
-      <div style="display:flex;margin-top:20px;margin-bottom:20px;background:rgb(248, 248, 248);">
+      <div class="l_sel">
         <div style="width:33.3%;text-align:center;">
           <img src alt />自动登录
         </div>
@@ -54,12 +56,12 @@
         </div>
       </div>
       <!-- 登录按钮 -->
-      <div style="display:flex;justify-content:center;background:rgb(248, 248, 248);">
+      <div class="login_btn">
         <mt-button @click="login" style="width:90%;background:rgb(245, 100, 86);color:white;">登录</mt-button>
       </div>
     </div>
     <!-- 背景铺满剩下的地方 -->
-    <div style="width:100%;height:100%;background:rgb(248, 248, 248);position:fixed;"></div>
+    <div class="pu"></div>
   </div>
 </template>
 <script>
@@ -67,7 +69,9 @@ export default {
   data() {
     return {
       uname: "",
-      upwd: ""
+      upwd: "",
+      show: false,
+      tishi: "用户名或者密码错误"
     };
   },
   methods: {
@@ -94,6 +98,7 @@ export default {
         } else {
           console.log("登录失败");
           console.log(res);
+          this.show = true;
         }
       });
     }
@@ -101,5 +106,57 @@ export default {
 };
 </script>
 <style scoped>
+.pu {
+  width: 100%;
+  height: 100%;
+  background: rgb(248, 248, 248);
+  position: fixed;
+}
+.login_btn {
+  display: flex;
+  justify-content: center;
+  background: rgb(248, 248, 248);
+}
+.l_sel {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: rgb(248, 248, 248);
+}
+._tishi {
+  padding: 3px;
+  border: 1px solid rgb(248, 248, 248);
+  background: white;
+  padding-left: 30%;
+  color: #f23030;
+  font-size: 14px;
+}
+._input {
+  display: flex;
+  padding: 15px;
+  border: 1px solid rgb(248, 248, 248);
+  background: white;
+}
+._sel {
+  text-align: center;
+  width: 50%;
+}
+.sel {
+  display: flex;
+  background: rgb(248, 248, 248);
+  padding: 15px;
+}
+.home {
+  width: 25px;
+  margin-left: 25px;
+  margin-top: 10px;
+}
+.t_reg {
+  color: white;
+  float: right;
+  font: 0.75rem;
+  margin-top: 15px;
+  margin-right: 25px;
+}
 </style>
 
