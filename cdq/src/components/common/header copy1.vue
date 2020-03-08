@@ -58,17 +58,24 @@
         </router-link>
       </div>
       <!-- 横向商品展示区 -->
-
-      <!-- <div id="an_logo" style="position:relative;">
+      <div id="an_logo" style="position:relative;">
         <transition @before-enter="before" @enter="enter" @after-enter="after">
           <div
             v-show="show"
             style="position:absolute;left:0;border:1px solid red;background:red;border-radius:10px;width:20px;height:20px;z-index:80;"
           ></div>
         </transition>
-      </div>-->
+      </div>
+      <div id="an_logo" style="position:relative;">
+        <transition @before-enter="before" @enter="enter" @after-enter="after">
+          <div
+            v-show="show"
+            style="position:absolute;left:0;border:1px solid red;background:red;border-radius:10px;width:20px;height:20px;z-index:80;"
+          ></div>
+        </transition>
+      </div>
       <div class="heng">
-        <div class="heng_1" v-for="(item,i) in products.slice(0,5) " :key="i">
+        <div class="heng_1" v-for="(item,i) in products" :key="i">
           <router-link :to="{path:'/details',query:{ id:item.id }}" style="text-decoration:none">
             <img style="width:100%;height:auto;" :src="require('../'+item.src)" alt />
             <div style="color:black;height:38px;overflow:hidden;">{{item.intr}}</div>
@@ -78,7 +85,7 @@
             <span style="color:#f56456">¥</span>
             <span style="color:#f56456">{{item.price}}</span>
             <span style="position:relative;float:right">
-              <span class="heng_2" @click="addCart(item.id,i);addGoods($event)">+</span>
+              <span class="heng_2" @click="addCart(item.id,i)">+</span>
             </span>
           </div>
         </div>
@@ -149,58 +156,34 @@
       </div>
       <!-- 横向商品展示区 -->
       <div class="heng">
-        <div class="heng_1" v-for="(item,i) in products.slice(5,10) " :key="i">
+        <div class="heng_1" v-for="(item,i) in products" :key="i">
           <router-link :to="{path:'/details',query:{ id:item.id }}" style="text-decoration:none">
-            <img style="width:100%;height:auto;" :src="require('../'+item.src)" alt />
-            <div style="color:black;height:38px;overflow:hidden;">{{item.intr}}</div>
+            <img style="width:100%;height:auto;" :src="item.src" alt />
+            <div style="color:black;">{{item.intr}}</div>
           </router-link>
 
-          <div style="margin:10px 0;">
+          <div>
             <span style="color:#f56456">¥</span>
             <span style="color:#f56456">{{item.price}}</span>
-            <span style="position:relative;float:right">
-              <span class="heng_2" @click="addCart(item.id,i);addGoods($event)">+</span>
-            </span>
+            <span class="heng_2">+</span>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- 原始位置 -->
-    <div
-      style="display:none;position:fixed;z-index:100;width:100%;height:0px;background:rgba(5,5,5,0.5);bottom:55px;display:flex"
-    >
-      <div style="width:25%;"></div>
-      <div style="width:25%;"></div>
-      <div style="width:25%;">
-        <!-- 动画小球 -->
-        <div style="position:relative;" v-for="(ball, index) of balls" :key="index">
-          <transition @before-enter="before" @enter="enter" @after-enter="after">
-            <div
-              v-show="ball.show"
-              style="position:absolute;left:50%;border:1px solid red;background:red;border-radius:10px;width:20px;height:20px;z-index:100;"
-            ></div>
-          </transition>
-        </div>
-        <div style="margin-left:50%;width:10px;height:10px;margin-top:5px;"></div>
-      </div>
-      <div style="width:25%;"></div>
-    </div>
     <!-- 动画定位时使用 -->
     <div
-      style="display:none;position:fixed;z-index:-1;width:100%;height:55px;background:rgba(5,5,5,0.5);bottom:0;display:flex"
+      style="position:fixed;z-index:-1;width:100%;height:55px;background:rgba(5,5,5,0.5);bottom:0;display:flex"
     >
       <div style="width:25%;"></div>
       <div style="width:25%;"></div>
       <div style="width:25%;">
         <div
-          id="anima"
+          id="cart"
           style="margin-left:50%;width:10px;height:10px;background:red;margin-top:5px;"
         ></div>
       </div>
       <div style="width:25%;"></div>
     </div>
-
     <!-- 撑开位置 -->
     <div class="cheng"></div>
   </div>
@@ -209,98 +192,50 @@
 export default {
   data() {
     return {
+      show: false,
       products: [],
-      balls: [
-        // 这里定义了多个ball,是因为可能同时有多个小球在动画中（快速点击多次或者多个商品）
-        {
-          show: false
-        },
-        {
-          show: false
-        },
-        {
-          show: false
-        },
-        {
-          show: false
-        },
-        {
-          show: false
-        },
-        {
-          show: false
-        },
-        {
-          show: false
-        },
-        {
-          show: false
-        }
-      ],
-      dropBalls: [] // 在动画中的小球集合
+      elLeft: 0,
+      elTop: 0
     };
   },
   methods: {
-    addGoods(e) {
-      // console.log(this.balls);
-      var el = e.target;
-      // console.log(el);
-      this.balls.forEach(v => {
-        if (!v.show) {
-          v.show = true; // 当切换元素的display:block/none时，会触发vue的动画
-          v.el = el; // 将触发点击事件的“+”号保定道小球对象上，方便获取动画初始时的位置
-          this.dropBalls.push(v); // 取一个小球加入动画队列
-          // console.log(this.balls);
-          return;
-        }
-      });
-    },
     // 实现加入购物车动画
     before(el) {
-      var an_Position = document
-        .getElementById("anima")
+      const an_Position = document
+        .getElementById("an_logo")
         .getBoundingClientRect();
-      console.log(an_Position);
-      let count = this.balls.length;
-      while (count--) {
-        // 将动画队列中的小球，依次处理
-        let ball = this.balls[count];
-        if (ball.show) {
-          let rect = ball.el.getBoundingClientRect(); //拿到点击的“+”号的位置,这里不直接取值（我是用的绝对定位，当然可以直接取值）的原因是，商品列表中每个加号的位置是不固定的，如果上下滑动了，这个位置就不确定
-          let x = rect.left - an_Position.left; // 需要偏移的x向距离
-          let y = -(window.innerHeight - rect.top - 55); // 需要偏移的y向距离
-          el.style.display = ""; // 当前状态下，display值为none，将其置空。
+      el.style.transform = `translate(${this.elLeft - an_Position.left}px,${this
+        .elTop - an_Position.top}px)`;
 
-          // 这里需要注意了，小球飞入的动画分两个维度，X轴和Y轴，因此
-          el.style.transform = `translate3d(${x}px, ${y}px, 0px)`; // 首先将“ball”Y向移动至“+”好位置
-          // el.style.transform = `translate3d(${x}px, 0px)`;
-          // 接着将“inner-hook”X向移动至“+”号处，其实此时外层“ball”的X位置没有动，但因为背景色等等样式只应用于“inner-hook”上，因此，视觉效果上，这个小球是移动到了“+”号的位置
-          // let inner = el.getElementsByClassName("inner-hook")[0];
-          // inner.style.webkitTransform = `translate3d(${x}px, 0, 0)`;
-          // inner.style.transform = `translate3d(${x}px, 0, 0)`;
-        }
-      }
+      console.log(an_Position.top);
+      console.log(an_Position.left);
+      console.log(this.elLeft);
+      console.log(this.elTop);
     },
     enter(el, done) {
       el.offsetWidth;
-      this.$nextTick(() => {
-        // el.style.webkitTransform = "translate3d(0, 0, 0)"; //接着将小球位置置为初始值，但css中设置了transition .8s,因此，动画效果就出来了
-        el.style.transform = "translate3d(0, 0, 0)";
-        // let inner = el.getElementsByClassName("inner-hook")[0];
-        // inner.style.webkitTransform = "translate3d(0, 0, 0)";
-        el.style.transform = "translate3d(0, 0, 0)";
-        el.style.transition = "transform 0.3s linear";
-        setTimeout(() => {
-          done();
-        }, 300);
-      });
+      const badgePosition = document
+        .getElementById("cart")
+        .getBoundingClientRect();
+      console.log(badgePosition.left);
+      console.log(badgePosition.top);
+      const an_Position = document
+        .getElementById("an_logo")
+        .getBoundingClientRect();
+
+      el.style.transform = `translate(${
+        badgePosition.left
+      }px,${badgePosition.top - an_Position.top}px)`;
+      // 增加贝塞尔曲线
+      el.style.transition =
+        "transform .88s cubic-bezier(0.3, -0.25, 0.7, -0.15)";
+      el.style.transition = "transform 0.2s linear";
+      // el.style.transform = "translate(100px,100px)";
+      // el.style.transition = "all 1s ease";
+      done();
     },
     after(el) {
-      let ball = this.dropBalls.shift(); //结束后，将这个活动中的小球删除
-      if (ball) {
-        ball.show = false;
-        el.style.display = "none"; // 并且将其设为不可见
-      }
+      this.show = false;
     },
     //   向父组件传参跳转分类页面
     toFenlei() {
@@ -315,9 +250,9 @@ export default {
       var id = p_id;
       var url = "details";
       var obj = { id };
-      // this.elLeft = event.target.getBoundingClientRect().left;
-      // this.elTop = event.target.getBoundingClientRect().top;
-      // this.show = true;
+      this.elLeft = event.target.getBoundingClientRect().left;
+      this.elTop = event.target.getBoundingClientRect().top;
+      this.show = true;
       this.axios.get(url, { params: obj }).then(res => {
         var obj2 = res.data[0];
         var url = "addcart";
@@ -327,8 +262,9 @@ export default {
           } else if (res.data == 1) {
             setTimeout(() => {
               this.$store.commit("add");
-            }, 300);
+            }, 200);
           }
+          console.log(res.data);
         });
       });
     }
@@ -443,7 +379,6 @@ div .top {
   background: rgb(245, 100, 86);
   align-items: center;
   position: fixed;
-  z-index: 10;
 }
 </style>
 

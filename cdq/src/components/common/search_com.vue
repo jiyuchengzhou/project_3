@@ -35,7 +35,7 @@
           </router-link>
           <div class="list_3">
             <span>¥{{item.price}}</span>
-            <div class="gwc" @click="add_cart(item.id)">
+            <div class="gwc" @click="add_cart(item.id);addGoods($event)">
               <img style="margin-top:3px;" src="../img/search/gwc.png" alt />
             </div>
           </div>
@@ -43,6 +43,40 @@
       </div>
     </div>
     <div style="height:55px;"></div>
+    <!-- 原始位置 -->
+    <div
+      style="display:none;position:fixed;z-index:100;width:100%;height:0px;background:rgba(5,5,5,0.5);bottom:55px;display:flex"
+    >
+      <div style="width:25%;"></div>
+      <div style="width:25%;"></div>
+      <div style="width:25%;">
+        <!-- 动画小球 -->
+        <div style="position:relative;" v-for="(ball, index) of balls" :key="index">
+          <transition @before-enter="before" @enter="enter" @after-enter="after">
+            <div
+              v-show="ball.show"
+              style="position:absolute;left:50%;border:1px solid red;background:red;border-radius:10px;width:20px;height:20px;z-index:100;"
+            ></div>
+          </transition>
+        </div>
+        <div style="margin-left:50%;width:10px;height:10px;margin-top:5px;"></div>
+      </div>
+      <div style="width:25%;"></div>
+    </div>
+    <!-- 动画定位时使用 -->
+    <div
+      style="display:none;position:fixed;z-index:-1;width:100%;height:55px;background:rgba(5,5,5,0.5);bottom:0;display:flex"
+    >
+      <div style="width:25%;"></div>
+      <div style="width:25%;"></div>
+      <div style="width:25%;">
+        <div
+          id="an_logo"
+          style="margin-left:50%;width:10px;height:10px;background:red;margin-top:5px;"
+        ></div>
+      </div>
+      <div style="width:25%;"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -51,7 +85,35 @@ export default {
     return {
       key: "",
       products: [],
-      xian: 1
+      xian: 1,
+      balls: [
+        // 这里定义了多个ball,是因为可能同时有多个小球在动画中（快速点击多次或者多个商品）
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        }
+      ],
+      dropBalls: [] // 在动画中的小球集合
     };
   },
   // directives: {
@@ -65,6 +127,67 @@ export default {
   //   }
   // },
   methods: {
+    addGoods(e) {
+      // console.log(this.balls);
+      var el = e.target;
+      // console.log(el);
+      this.balls.forEach(v => {
+        if (!v.show) {
+          v.show = true; // 当切换元素的display:block/none时，会触发vue的动画
+          v.el = el; // 将触发点击事件的“+”号保定道小球对象上，方便获取动画初始时的位置
+          this.dropBalls.push(v); // 取一个小球加入动画队列
+          // console.log(this.balls);
+          return;
+        }
+      });
+    },
+    // 实现加入购物车动画
+    before(el) {
+      var an_Position = document
+        .getElementById("an_logo")
+        .getBoundingClientRect();
+      console.log(an_Position);
+      let count = this.balls.length;
+      while (count--) {
+        // 将动画队列中的小球，依次处理
+        let ball = this.balls[count];
+        if (ball.show) {
+          let rect = ball.el.getBoundingClientRect(); //拿到点击的“+”号的位置,这里不直接取值（我是用的绝对定位，当然可以直接取值）的原因是，商品列表中每个加号的位置是不固定的，如果上下滑动了，这个位置就不确定
+          let x = rect.left - an_Position.left; // 需要偏移的x向距离
+          let y = -(window.innerHeight - rect.top - 55); // 需要偏移的y向距离
+          el.style.display = ""; // 当前状态下，display值为none，将其置空。
+
+          // 这里需要注意了，小球飞入的动画分两个维度，X轴和Y轴，因此
+          el.style.transform = `translate3d(${x}px, ${y}px, 0px)`; // 首先将“ball”Y向移动至“+”好位置
+          // el.style.transform = `translate3d(${x}px, 0px)`;
+          // 接着将“inner-hook”X向移动至“+”号处，其实此时外层“ball”的X位置没有动，但因为背景色等等样式只应用于“inner-hook”上，因此，视觉效果上，这个小球是移动到了“+”号的位置
+          // let inner = el.getElementsByClassName("inner-hook")[0];
+          // inner.style.webkitTransform = `translate3d(${x}px, 0, 0)`;
+          // inner.style.transform = `translate3d(${x}px, 0, 0)`;
+        }
+      }
+    },
+    enter(el, done) {
+      el.offsetWidth;
+      this.$nextTick(() => {
+        // el.style.webkitTransform = "translate3d(0, 0, 0)"; //接着将小球位置置为初始值，但css中设置了transition .8s,因此，动画效果就出来了
+        el.style.transform = "translate3d(0, 0, 0)";
+        // let inner = el.getElementsByClassName("inner-hook")[0];
+        // inner.style.webkitTransform = "translate3d(0, 0, 0)";
+        el.style.transform = "translate3d(0, 0, 0)";
+        el.style.transition = "transform 0.3s linear";
+        setTimeout(() => {
+          done();
+        }, 300);
+      });
+    },
+    after(el) {
+      let ball = this.dropBalls.shift(); //结束后，将这个活动中的小球删除
+      if (ball) {
+        ball.show = false;
+        el.style.display = "none"; // 并且将其设为不可见
+      }
+    },
     add_cart(i) {
       var id = i;
       var url = "details";
@@ -78,7 +201,9 @@ export default {
           if (res.data == -1) {
             this.$router.push("/login");
           } else if (res.data == 1) {
-            this.$store.commit("add");
+            setTimeout(() => {
+              this.$store.commit("add");
+            }, 300);
           }
           console.log(res.data);
         });

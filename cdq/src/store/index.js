@@ -6,8 +6,12 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     cartNum: 0,
+    username: 0,
   },
   mutations: {
+    getusername(state, name) {
+      state.username = name
+    },
     huo(state, n) {
       state.cartNum = n;
     },
@@ -19,7 +23,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    Huo() {}
+    del(context, len) {
+      context.commit('del', len)
+    }
   },
   modules: {}
 });

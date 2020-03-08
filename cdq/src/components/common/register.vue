@@ -59,7 +59,7 @@
       <div class="login_btn">
         <mt-button
           @click="register"
-          style="width:90%;background:rgb(245, 100, 86);color:white;"
+          style="width:90%;background:rgb(247, 59, 48);color:white;"
           :disabled="!(c_uname=='green'&&c_phone=='green'&&c_upwd=='green')"
         >注册</mt-button>
       </div>
@@ -127,6 +127,7 @@ export default {
       this.axios.get(url, { params: obj }).then(res => {
         if (res.data == 1) {
           console.log("注册成功");
+          this.$router.push("/login");
         } else {
           console.log("注册失败");
         }
@@ -161,8 +162,11 @@ export default {
   margin-bottom: 20px;
 }
 .wc {
-  height: 60px;
-  margin: 10px;
+  width: 100%;
+  height: auto;
+  /* margin: 10px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .t_login {
   color: white;

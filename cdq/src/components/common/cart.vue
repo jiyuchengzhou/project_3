@@ -223,6 +223,7 @@ export default {
     },
     //删除
     del() {
+      this.isAllChecked = false;
       for (var i = 0; i < this.sel.length; i++) {
         if (this.sel[i] == true) {
           var id = this.products[i].id;
@@ -258,27 +259,28 @@ export default {
 
     //清除
     del_all() {
-      for (var i = 0; i < this.sel.length; i++) {
-        var id = this.products[i].id;
-        var obj = { id };
-        var url = "del";
-        this.axios.get(url, { params: obj }).then(res => {
-          console.log(res.data);
-          if (res.data == 1) {
-            console.log("删除成功");
-            this.total_p = "0.00";
-            this.products = [];
-            this.$store.commit("del", 1);
-          } else {
-            console.log("删除失败");
-          }
-        });
-      }
+      this.isAllChecked = false;
+      // for (var i = 0; i < this.sel.length; i++) {
+      var url = "delall";
+      this.axios.get(url).then(res => {
+        console.log(res.data);
+        if (res.data == 1) {
+          console.log("删除成功");
+          this.total_p = "0.00";
+          this.$store.dispatch("del", this.products.length);
+          this.products = [];
+          // this.$store.commit("del", this.products.length);
+        } else {
+          console.log("删除失败");
+        }
+      });
+      // }
     }
   },
   watch: {
     cart_sel() {
       this.sel = this.cart_sel;
+      this.isAllChecked = false;
     },
     cart_num() {
       this.num = this.cart_num;
@@ -287,6 +289,8 @@ export default {
       this.products = this.cart_products;
     }
   },
+  // computed:{
+  // },
   created: function() {
     // 从数据库获取数据
     var url = "cart";

@@ -9,7 +9,7 @@
         <div class="t_reg">注册</div>
       </router-link>
       <div style="text-align:center;">
-        <img style="height:60px;margin:10px;" src="../img/login/02.png" alt />
+        <img class="wc" src="../img/login/02.png" alt />
       </div>
     </div>
     <!-- 登录选择 -->
@@ -39,7 +39,7 @@
             v-model="upwd"
             style="border:none; outline:none;height:20px;"
             placeholder="密码"
-            type="text"
+            type="password"
           />
         </div>
       </div>
@@ -57,7 +57,7 @@
       </div>
       <!-- 登录按钮 -->
       <div class="login_btn">
-        <mt-button @click="login" style="width:90%;background:rgb(245, 100, 86);color:white;">登录</mt-button>
+        <mt-button @click="login" style="width:90%;background:rgb(247, 59, 48);color:white;">登录</mt-button>
       </div>
     </div>
     <!-- 背景铺满剩下的地方 -->
@@ -92,8 +92,9 @@ export default {
       var obj = { uname: uname, upwd: upwd };
       var url = "login";
       this.axios.get(url, { params: obj }).then(res => {
-        if (res.data == 1) {
-          console.log("登录成功");
+        if (res.data.code == 1) {
+          var name = res.data.msg[0].uname;
+          this.$store.commit("getusername", name);
           this.$router.push("/home");
         } else {
           console.log("登录失败");
@@ -106,6 +107,12 @@ export default {
 };
 </script>
 <style scoped>
+.wc {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .pu {
   width: 100%;
   height: 100%;

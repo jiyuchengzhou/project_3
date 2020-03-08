@@ -46,7 +46,7 @@
           <!-- 品牌 -->
           <div class="pingpai">
             <!-- 循环生成 -->
-            <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+            <div @click="chuan" class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
               <img class="logo" :src="item.src" alt />
               <div>{{item.name}}</div>
             </div>
@@ -72,7 +72,7 @@
           <!-- 品牌 -->
           <div class="pingpai">
             <!-- 循环生成 -->
-            <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+            <div class="pingpai_1" @click="chuan" v-for="(item,i) in pingpai" :key="i">
               <img class="logo" :src="item.src" alt />
               <div>{{item.name}}</div>
             </div>
@@ -95,7 +95,7 @@
           <!-- 品牌 -->
           <div class="pingpai">
             <!-- 循环生成 -->
-            <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+            <div @click="chuan" class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
               <img class="logo" :src="item.src" alt />
               <div>{{item.name}}</div>
             </div>
@@ -118,7 +118,7 @@
           <!-- 品牌 -->
           <div class="pingpai">
             <!-- 循环生成 -->
-            <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+            <div @click="chuan" class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
               <img class="logo" :src="item.src" alt />
               <div>{{item.name}}</div>
             </div>
@@ -141,7 +141,7 @@
           <!-- 品牌 -->
           <div class="pingpai">
             <!-- 循环生成 -->
-            <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+            <div @click="chuan" class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
               <img class="logo" :src="item.src" alt />
               <div>{{item.name}}</div>
             </div>
@@ -164,7 +164,7 @@
           <!-- 品牌 -->
           <div class="pingpai">
             <!-- 循环生成 -->
-            <div class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
+            <div @click="chuan" class="pingpai_1" v-for="(item,i) in pingpai" :key="i">
               <img class="logo" :src="item.src" alt />
               <div>{{item.name}}</div>
             </div>

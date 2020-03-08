@@ -18,37 +18,38 @@ import fenlei from "@/components/common/fenlei.vue";
 //引入我的页面
 import wode from "@/components/common/wode.vue";
 //引入商品详情页
-import details from "@/components/common/details.vue";
+// import details from "@/components/common/details.vue";
 //引入商品搜索页
 import search from "@/components/common/search_com.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/search",
-    component: search
-  },
+  // {
+  //   path: "/search",
+  //   component: search
+  // },
   {
     path: "/exam01",
     component: exam01
   },
   {
     path: "/details",
-    component: details
+    // component: details
+    component: () => import(/* webpackChunkName: "details"*/  '@/components/common/details.vue')
   },
-  {
-    path: "/wode",
-    component: wode
-  },
-  {
-    path: "/fenlei",
-    component: fenlei
-  },
-  {
-    path: "/cart",
-    component: cart
-  },
+  // {
+  //   path: "/wode",
+  //   component: wode
+  // },
+  // {
+  //   path: "/fenlei",
+  //   component: fenlei
+  // },
+  // {
+  //   path: "/cart",
+  //   component: cart
+  // },
   {
     path: "/register",
     component: register

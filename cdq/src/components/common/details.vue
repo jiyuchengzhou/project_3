@@ -6,7 +6,7 @@
       </div>
       <!-- 轮播图区域 -->
       <div class="_swiper">
-        <swiper :options="swiperOption" touch-action="none;">
+        <swiper :options="swiperOption">
           <swiper-slide>
             <img :src="require('../'+products.src01)" class="swiper_img" alt />
           </swiper-slide>
@@ -22,6 +22,9 @@
           <swiper-slide>
             <img :src="require('../'+products.src05)" class="swiper_img" alt />
           </swiper-slide>
+          <div class="swiper-pagination swip" slot="pagination"></div>
+          <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
+          <!-- <div class="swiper-button-next" slot="button-next"></div> -->
         </swiper>
       </div>
       <div class="bg_white">
@@ -36,7 +39,7 @@
           </div>
         </div>
         <!-- 价格 -->
-        <div class="d-flex">
+        <div class="d-flex" style="justify-content:space-between">
           <div class="price">
             ¥
             <span>{{products.price}}</span>
@@ -98,8 +101,8 @@
           </div>
 
           <div class="w-58">
-            <mt-button type="primary" @click="add_cart">加入购物车</mt-button>
-            <mt-button type="default">立即购买</mt-button>
+            <mt-button style="width:50%;font-size:0.8rem" type="primary" @click="add_cart">加入购物车</mt-button>
+            <mt-button style="width:50%;font-size:0.8rem" type="default">立即购买</mt-button>
           </div>
         </div>
       </div>
@@ -135,27 +138,32 @@
   </div>
 </template>
 <script>
-// 引入swiper组件
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+import { Toast } from "mint-ui";
 export default {
+  name: "carrousel",
   data() {
     return {
+      // 弹窗
+      toastInstanse: null,
       cart: false,
       num: 1,
       products: {},
-      // products:{intr:"特价促销 诺瑞犬用羊乳钙片 110g 220片 通用型幼犬怀孕狗 补钙",price:30,src01:'img/details/1/1.jpg' },
-      //轮播图所需参数
+      // 轮播图所需数据
       swiperOption: {
-        slidesPerView: "auto",
-        centeredSlides: true,
-        spaceBetween: 10,
-        loop: true,
-
-        //分页器
         pagination: {
-          el: ".swiper-pagination"
+          el: ".swiper-pagination",
+          clickable: true, // 允许点击小圆点跳转
+          type: "fraction" //显示数字
         },
-        speed: 600 //config参数同swiper4,与官网一致
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false // 手动切换之后继续自动轮播
+        },
+        loop: true,
+        navigation: {
+          nextEl: " .swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        }
       }
     };
   },
@@ -166,13 +174,29 @@ export default {
     },
     // 添加购物车
     inCart() {
-      var url = "addcart";
+      var url = "detailadd";
       var obj2 = this.products;
+      obj2.count = this.num;
       this.axios.get(url, { params: obj2 }).then(res => {
         if (res.data == 1) {
-          //   this.$router.push("/login");
           this.$store.commit("add");
-          console.log("123");
+          this.toastInstanse = Toast({
+            message: "添加成功", //弹窗内容
+            position: "middle", //弹窗位置
+            duration: 1000 //弹窗时间毫秒,如果值为-1，则不会消失
+          });
+          // 关闭购物车页面
+          this.cha();
+        } else if (res.data == -1) {
+          this.$router.push("/login");
+        } else {
+          this.toastInstanse = Toast({
+            message: "添加成功", //弹窗内容
+            position: "middle", //弹窗位置
+            duration: 1000 //弹窗时间毫秒,如果值为-1，则不会消失
+          });
+          // 关闭购物车页面
+          this.cha();
         }
       });
     },
@@ -195,10 +219,6 @@ export default {
       }
     }
   },
-  components: {
-    swiper,
-    swiperSlide
-  },
   // 从服务器获取商品数据
   created: function() {
     var id = this.$route.query.id;
@@ -213,6 +233,16 @@ export default {
 };
 </script>
 <style scoped>
+.swip {
+  background: grey;
+  width: 50px;
+  border-radius: 10px;
+  color: white;
+  opacity: 0.5;
+  position: absolute;
+  left: 100%;
+  transform: translate3d(-75px, 0, 0);
+}
 .que_btn {
   text-align: center;
   bottom: 0;
@@ -363,7 +393,7 @@ export default {
   padding-right: 20px;
 }
 .price {
-  width: 80%;
+  /* width: 80%; */
   color: #f56456;
   font-size: 20px;
   padding-left: 20px;

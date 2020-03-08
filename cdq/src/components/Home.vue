@@ -124,7 +124,7 @@ export default {
           this.cart_sel[i] = false;
         }
         for (var i = 0; i < this.cart_products.length; i++) {
-          this.cart_num[i] = 1;
+          this.cart_num[i] = this.cart_products[i].count;
         }
       });
       // }
