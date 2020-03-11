@@ -94,6 +94,7 @@ export default {
       this.axios.get(url, { params: obj }).then(res => {
         if (res.data.code == 1) {
           var name = res.data.msg[0].uname;
+          sessionStorage.setItem('username', name)
           this.$store.commit("getusername", name);
           this.$router.push("/home");
         } else {

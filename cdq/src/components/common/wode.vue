@@ -9,7 +9,8 @@
       <div class="user">
         <img class="user_img" src="../img/wode/user.png" alt />
         <div class="user_name">
-          <div>{{this.$store.state.username}}</div>
+          <!-- <div>{{this.$store.state.username}}</div> -->
+          <div>{{name}}</div>
           <div class="zhuche">注册会员</div>
         </div>
       </div>
@@ -141,11 +142,20 @@
 </template>
 <script>
 export default {
+  data(){
+    return{
+      name:""
+    }
+  },
+  created(){
+    this.name=sessionStorage.getItem('username')   
+  },
   methods: {
     exit() {
       var url = "exit";
       this.axios.get(url).then(res => {
         if (res.data == 1) {
+          sessionStorage.clear()
           this.$router.push("/login");
         }
       });

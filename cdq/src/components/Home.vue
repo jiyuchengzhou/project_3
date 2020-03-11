@@ -190,12 +190,15 @@ export default {
     // 检测是否登录
     jianche() {
       var url = "jianche";
-      this.axios.get(url).then(res => {
-        if (res.data == -1) {
-          this.$router.push("/login");
-          console.log(res.data);
-        }
-      });
+      if(!sessionStorage.getItem("username")){
+        this.$router.push("/login");
+      }
+      // this.axios.get(url).then(res => {
+      //   if (res.data == -1) {
+      //     this.$router.push("/login");
+      //     console.log(res.data);
+      //   }
+      // });
     },
     // 切换组件
     changeState(i) {
