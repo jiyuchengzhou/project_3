@@ -350,8 +350,8 @@ export default {
 .xifen {
   width: 100%;
   font-size: 16px;
-  height: 2rem;
-  line-height: 2rem;
+  height:32px;
+  line-height: 32px;
   font-weight: bold;
   color: #353535;
   text-align: center;

@@ -101,8 +101,8 @@
           </div>
 
           <div class="w-58">
-            <mt-button style="width:50%;font-size:0.8rem" type="primary" @click="add_cart">加入购物车</mt-button>
-            <mt-button style="width:50%;font-size:0.8rem" type="default">立即购买</mt-button>
+            <mt-button style="width:50%;font-size:13px" type="primary" @click="add_cart">加入购物车</mt-button>
+            <mt-button style="width:50%;font-size:13px" type="default">立即购买</mt-button>
           </div>
         </div>
       </div>

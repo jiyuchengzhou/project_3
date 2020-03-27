@@ -171,7 +171,7 @@ export default {
 .t_login {
   color: white;
   float: right;
-  font: 0.75rem;
+  font: 12px;
   margin-top: 15px;
   margin-right: 25px;
 }

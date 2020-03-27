@@ -408,20 +408,20 @@ export default {
 }
 .price {
   line-height: 35px;
-  font-size: 0.75rem;
+  font-size: 12px;
   color: #f56456;
 }
 .guige {
-  line-height: 0.7rem;
-  font-size: 0.5rem;
+  line-height:11px;
+  font-size: 8px;
   color: #999;
 }
 .intr {
   display: block;
-  height: 1.6rem;
-  line-height: 0.8rem;
+  height: 26px;
+  line-height: 13px;
   overflow: hidden;
-  font-size: 0.6rem;
+  font-size: 10px;
   color: #353535;
 }
 .g3 {
@@ -440,7 +440,7 @@ export default {
   background: white;
   display: flex;
   padding: 10px;
-  border-radius: 1rem;
+  border-radius: 16px;
 }
 .mint-header {
   color: #000;
